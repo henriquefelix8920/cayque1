@@ -77,3 +77,9 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 - A implementação usa Framer Motion e CSS, já presentes no projeto, em vez de adicionar dependências. A escolha segue a referência de storytelling com ScrollTrigger, que recomenda animar transform/opacity e simplificar por breakpoint, e a referência Lenis, que reforça manter o scroll nativo e respeitar reduced motion.
 
 Referências técnicas consultadas: [GSAP ScrollTrigger Storytelling](https://github.com/MengTo/Skills/blob/main/agent-skills/web-design/gsap-scrolltrigger-storytelling/SKILL.md) e [Lenis](https://github.com/darkroomengineering/lenis).
+
+## Ajuste de títulos e índices dos Atos I e II
+
+- Os índices numéricos dos capítulos do Ato II foram removidos. A leitura agora acontece por tag, ícone, título e descrição, sem a sequência visual 01–04.
+- O Ato I foi recriado como uma narrativa de quatro cenas — No palco, No ensaio, No estúdio e Na comunidade — sem os antigos números de experiência, shows, horas e alunos.
+- Os títulos principais dos dois atos usam revelação tipográfica vertical por linha, com clipping, easing editorial e fallback para movimento reduzido.
