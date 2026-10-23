@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, Music2, Volume2 } from 'lucide-react';
 
@@ -6,25 +6,16 @@ const equalizerBars = [32, 54, 42, 72, 48, 84, 58, 38, 68, 50, 78, 46, 64, 36, 7
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -90]);
   const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -44]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.78], [1, 0]);
   const videoScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.08]);
 
-  useEffect(() => {
-    const media = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsDesktop(media.matches);
-    update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
-  }, []);
-
   return (
     <section id="inicio" ref={containerRef} className="hero relative flex min-h-[100svh] items-center justify-center overflow-hidden">
       <motion.div style={{ scale: videoScale, backgroundImage: "url('/assets/foto1.jpg')" }} className="absolute inset-0 pointer-events-none bg-cover bg-center" aria-hidden="true">
-        {isDesktop && <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="none" poster="/assets/foto1.jpg" aria-hidden="true"><source src="/assets/video1.mp4" type="video/mp4" /></video>}
+        <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.jpg" aria-hidden="true"><source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" /><source src="/assets/video1.mp4" type="video/mp4" /></video>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,6,12,.88)_0%,rgba(8,6,12,.46)_48%,rgba(8,6,12,.72)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,6,12,.38)_0%,transparent_40%,rgba(8,6,12,.96)_100%)]" />
         <div className="absolute inset-0 bg-brand-pink/10 mix-blend-screen" />

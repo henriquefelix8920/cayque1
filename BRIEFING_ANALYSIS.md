@@ -56,3 +56,10 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 - O painel de compra ganhou `min-width: 0`, quebra segura de cabeçalho e CTA com o título centralizado de forma independente da seta.
 - No mobile, os glows grandes foram removidos, o `backdrop-filter` dos slabs foi desligado, os painéis ganharam padding menor e os CTAs ocupam uma largura limitada e segura para toque.
 - Validação final: `npm run typecheck`, `npm run build`, `git diff --check`, preview local HTTP 200 e inspeção do DOM em viewport 375×812.
+
+## Correções finais solicitadas
+
+- O vídeo voltou a ser o plano de fundo real do hero em todos os breakpoints. Para preservar velocidade, o desktop usa `video1.mp4` em 1280×720 e telas menores usam `video1-mobile.mp4`, uma derivação H.264 de 640×360 com aproximadamente 494 KB.
+- O Ato I deixou os cards e passou a usar uma lista editorial em fluxo normal, com linhas, ícones, números e descrição. A estrutura não usa mais um grid absoluto sobre o texto, eliminando a sobreposição no mobile.
+- O Ato II mantém apenas os ícones animados nos marcadores externos; os boxes internos exibem somente tag, título, descrição e ação.
+- O valor `R$ 97` foi reorganizado em um price lockup centralizado dentro do box de compra, com o CTA separado e também centralizado.
