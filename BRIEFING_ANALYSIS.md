@@ -46,3 +46,13 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 
 - [MDN — HTML video](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video)
 - [MDN — prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
+
+## Auditoria mobile e velocidade — rodada final
+
+- O hero mantém o vídeo como fundo em telas médias e grandes; abaixo de 768px, o vídeo não é instanciado e `foto1.jpg` otimizada assume o fundo. Isso elimina cerca de 2 MB e o custo de decodificação contínua do vídeo no celular sem deixar a primeira dobra vazia.
+- O preço e a frase “Acesso completo · atualizações contínuas” foram retirados do hero.
+- As amplitudes de parallax dos boxes foram reduzidas para movimentos sutis, evitando que os cards se sobreponham quando a seção vira uma coluna no celular.
+- O Ato II agora usa ícones de cada pilar em marcadores animados, em vez de números; a animação tem flutuação e rotação leves e mantém o fallback para movimento reduzido.
+- O painel de compra ganhou `min-width: 0`, quebra segura de cabeçalho e CTA com o título centralizado de forma independente da seta.
+- No mobile, os glows grandes foram removidos, o `backdrop-filter` dos slabs foi desligado, os painéis ganharam padding menor e os CTAs ocupam uma largura limitada e segura para toque.
+- Validação final: `npm run typecheck`, `npm run build`, `git diff --check`, preview local HTTP 200 e inspeção do DOM em viewport 375×812.
