@@ -67,3 +67,13 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 ## Fundo da seção final
 
 - A seção “Seu lugar é no palco” agora usa `foto3.jpg` como plano de fundo, com parallax vertical suave, overlay escuro em gradiente e glow rosa para manter o texto e o CTA legíveis em desktop e mobile.
+
+## Redesign cinematográfico do Ato II
+
+- Os quatro boxes, a linha de conexão e os marcadores circulares anteriores foram removidos como estrutura visual. O Ato II agora funciona como uma narrativa editorial contínua sobre a foto2.jpg.
+- A abertura usa a headline “Não é só tocar. É entender a levada.” em escala expressiva, seguida de quatro capítulos assimétricos: Levada real, Variações rítmicas, Timbres & sonoridades e Acordes aplicados.
+- Cada capítulo usa índice, ícone discreto, tag, texto curto e uma marca gráfica vertical que pulsa como um sinal de groove. Não há dependência de hover para compreender o conteúdo.
+- O scroll movimenta a fotografia e desloca os capítulos com amplitudes moderadas. Em telas pequenas, a composição vira fluxo vertical, sem pinning e sem deslocamentos agressivos.
+- A implementação usa Framer Motion e CSS, já presentes no projeto, em vez de adicionar dependências. A escolha segue a referência de storytelling com ScrollTrigger, que recomenda animar transform/opacity e simplificar por breakpoint, e a referência Lenis, que reforça manter o scroll nativo e respeitar reduced motion.
+
+Referências técnicas consultadas: [GSAP ScrollTrigger Storytelling](https://github.com/MengTo/Skills/blob/main/agent-skills/web-design/gsap-scrolltrigger-storytelling/SKILL.md) e [Lenis](https://github.com/darkroomengineering/lenis).

@@ -2,31 +2,39 @@ import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Hand, Waves, Palette, Repeat, ArrowRight } from 'lucide-react';
 
-const pillars = [
-  { icon: Hand, title: 'Levada real', description: 'A mão direita executando o ritmo como ele é tocado no palco — sem enrolação, sem atalho.', tag: 'mão + groove' },
-  { icon: Waves, title: 'Variações rítmicas', description: 'Como mudar a levada sem perder o groove e adaptar a guitarra a cada momento da música.', tag: 'tempo + dinâmica' },
-  { icon: Palette, title: 'Timbres & sonoridades', description: 'Clean, crunch e ambiência: entender o que cada knob faz para construir um som seu.', tag: 'som + identidade' },
-  { icon: Repeat, title: 'Acordes aplicados', description: 'Entender como os acordes funcionam dentro do piseiro e do arrocha, em vez de decorar formas.', tag: 'harmonia + prática' },
+const chapters = [
+  { number: '01', icon: Hand, title: 'Levada real', description: 'Entenda como a mão constrói o groove, sem atalhos.', tag: 'mão + groove' },
+  { number: '02', icon: Waves, title: 'Variações rítmicas', description: 'Mude a levada sem perder a identidade da música.', tag: 'tempo + dinâmica' },
+  { number: '03', icon: Palette, title: 'Timbres & sonoridades', description: 'Encontre o som que faz a guitarra ter personalidade.', tag: 'som + identidade' },
+  { number: '04', icon: Repeat, title: 'Acordes aplicados', description: 'Entenda como os acordes funcionam no piseiro e no arrocha.', tag: 'harmonia + prática' },
 ];
 
 const Method = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const panelY = [
-    useTransform(scrollYProgress, [0, 1], [10, -8]),
-    useTransform(scrollYProgress, [0, 1], [-6, 12]),
-    useTransform(scrollYProgress, [0, 1], [9, -10]),
-    useTransform(scrollYProgress, [0, 1], [-8, 10]),
+  const imageY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.1]);
+  const chapterY = [
+    useTransform(scrollYProgress, [0, 1], [18, -12]),
+    useTransform(scrollYProgress, [0, 1], [-10, 16]),
+    useTransform(scrollYProgress, [0, 1], [14, -18]),
+    useTransform(scrollYProgress, [0, 1], [-14, 12]),
   ];
 
-  return <section id="metodo" ref={sectionRef} className="relative overflow-hidden py-24 lg:py-36">
-    <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ['-3%', '3%']), backgroundImage: "url('/assets/foto2.jpg')" }} className="absolute inset-[-5%] -z-20 bg-cover bg-center" aria-hidden="true" />
-    <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,6,12,.96)_0%,rgba(8,6,12,.72)_48%,rgba(8,6,12,.9)_100%)]" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08060c_0%,rgba(8,6,12,.2)_24%,rgba(18,8,32,.82)_58%,#08060c_100%)]" />
+  return <section id="metodo" ref={sectionRef} className="method-cinema relative overflow-hidden py-24 lg:py-36">
+    <motion.div style={{ y: imageY, scale: imageScale, backgroundImage: "url('/assets/foto2.jpg')" }} className="absolute inset-[-7%] -z-20 bg-cover bg-center" aria-hidden="true" />
+    <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,6,12,.96)_0%,rgba(8,6,12,.72)_42%,rgba(8,6,12,.28)_100%)]" aria-hidden="true" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08060c_0%,rgba(8,6,12,.18)_25%,rgba(8,6,12,.62)_57%,#08060c_100%)]" aria-hidden="true" /><div className="method-cinema-noise" aria-hidden="true" />
     <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-      <motion.div initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .7 }} className="max-w-3xl"><span className="eyebrow">Ato II — O método</span><h2 className="mt-5 font-display text-4xl font-extrabold leading-[.98] tracking-[-.055em] md:text-6xl">Quatro movimentos.<br /><span className="text-white/45">Uma linguagem.</span></h2><p className="mt-7 max-w-2xl text-base leading-7 text-white/65 md:text-lg">Aulas que se comportam como um ensaio: você escuta, executa, varia e entende o que está acontecendo.</p></motion.div>
-      <div className="method-track mt-16 lg:mt-24"><div className="method-line" aria-hidden="true" />{pillars.map((pillar, i) => { const Icon = pillar.icon; return <motion.article key={pillar.title} style={{ y: panelY[i] }} initial={{ opacity: 0, scale: .96 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: .7, delay: .12 * i }} className="method-step group"><div className="method-marker" aria-hidden="true"><motion.div animate={{ y: [0, -3, 0], rotate: [-4, 4, -4], scale: [1, 1.08, 1] }} transition={{ duration: 2.8 + i * .25, repeat: Infinity, ease: 'easeInOut', delay: i * .18 }}><Icon size={22} strokeWidth={1.8} /></motion.div></div><div className="method-step-inner"><div className="flex items-center justify-end gap-4"><span className="text-[10px] uppercase tracking-[.22em] text-white/35">{pillar.tag}</span></div><h3 className="mt-7 font-display text-2xl font-bold tracking-[-.035em] text-white">{pillar.title}</h3><p className="mt-3 text-sm leading-6 text-white/70">{pillar.description}</p><div className="mt-7 flex items-center gap-2 text-xs uppercase tracking-[.18em] text-brand-pink opacity-70 transition-all group-hover:gap-4 group-hover:opacity-100">ver na prática <ArrowRight size={14} /></div></div></motion.article>; })}</div>
-      <motion.a initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: .7 }} href="#curso" className="mt-14 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition-colors hover:text-brand-pink">Ver como isso vira aula <ArrowRight size={16} /></motion.a>
+      <motion.div initial={{ opacity: 0, y: 34 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .8 }} className="method-opening max-w-5xl">
+        <span className="eyebrow">Ato II — O método</span>
+        <h2 className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,8.2rem)] font-extrabold leading-[.86] tracking-[-.08em]">Não é só tocar.<br /><span className="text-brand-pink text-glow-pink">É entender a levada.</span></h2>
+        <p className="mt-8 max-w-lg text-base leading-7 text-white/75 md:text-lg">Do movimento da mão ao som que faz a música acontecer.</p>
+      </motion.div>
+
+      <div className="method-chapters mt-24 lg:mt-36">{chapters.map((chapter, index) => { const Icon = chapter.icon; return <motion.article key={chapter.number} style={{ y: chapterY[index] }} initial={{ opacity: 0, y: 28 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .75, delay: .15 + index * .12 }} className={`method-chapter method-chapter-${index + 1}`}><div className="method-chapter-index"><span>{chapter.number}</span><span className="method-chapter-index-line" /></div><div className="method-chapter-copy"><div className="flex items-center gap-3 text-brand-pink"><Icon size={19} strokeWidth={1.6} /><span className="font-mono text-[10px] uppercase tracking-[.24em] text-white/50">{chapter.tag}</span></div><h3 className="mt-5 font-display text-3xl font-bold tracking-[-.05em] text-white md:text-5xl">{chapter.title}</h3><p className="mt-4 max-w-md text-sm leading-6 text-white/70 md:text-base">{chapter.description}</p></div><div className="method-chapter-mark" aria-hidden="true"><span /><span /><span /></div></motion.article>; })}</div>
+
+      <motion.a initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .9, duration: .7 }} href="#curso" className="method-cinema-cta mt-20 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[.2em] text-white/80 transition-colors hover:text-brand-pink md:mt-28">Ver como isso vira aula <ArrowRight size={17} /></motion.a>
     </div>
   </section>;
 };
