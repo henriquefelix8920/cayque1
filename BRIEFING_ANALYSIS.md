@@ -63,3 +63,7 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 - O Ato I deixou os cards e passou a usar uma lista editorial em fluxo normal, com linhas, ícones, números e descrição. A estrutura não usa mais um grid absoluto sobre o texto, eliminando a sobreposição no mobile.
 - O Ato II mantém apenas os ícones animados nos marcadores externos; os boxes internos exibem somente tag, título, descrição e ação.
 - O valor `R$ 97` foi reorganizado em um price lockup centralizado dentro do box de compra, com o CTA separado e também centralizado.
+
+## Fundo da seção final
+
+- A seção “Seu lugar é no palco” agora usa `foto3.jpg` como plano de fundo, com parallax vertical suave, overlay escuro em gradiente e glow rosa para manter o texto e o CTA legíveis em desktop e mobile.
