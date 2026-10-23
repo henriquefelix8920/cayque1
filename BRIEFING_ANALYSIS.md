@@ -83,3 +83,12 @@ Referências técnicas consultadas: [GSAP ScrollTrigger Storytelling](https://gi
 - Os índices numéricos dos capítulos do Ato II foram removidos. A leitura agora acontece por tag, ícone, título e descrição, sem a sequência visual 01–04.
 - O Ato I foi recriado como uma narrativa de quatro cenas — No palco, No ensaio, No estúdio e Na comunidade — sem os antigos números de experiência, shows, horas e alunos.
 - Os títulos principais dos dois atos usam revelação tipográfica vertical por linha, com clipping, easing editorial e fallback para movimento reduzido.
+
+## Auditoria final de velocidade e fluidez
+
+- A seção “Seu lugar é no palco” deixou de escalar todo o conteúdo durante o scroll. Texto, preço e CTA permanecem estáveis; somente a fotografia `foto3.jpg` mantém o parallax controlado em uma camada própria.
+- O grão cinematográfico global deixou de usar `feTurbulence`, que recalculava uma textura procedural em toda a viewport, e passou a usar um padrão CSS pontilhado de baixo custo.
+- A fotografia do CTA usa `contain: paint` e `will-change` apenas na camada realmente animada.
+- A auditoria confirmou que o mobile continua usando o vídeo de 494 KB e que as imagens fotográficas permanecem abaixo de 130 KB cada.
+- O bundle final permanece em aproximadamente 97 KB gzip de JavaScript e 9 KB gzip de CSS.
+- Validação: `npm run typecheck`, `npm run build`, `git diff --check`, preview das transições e console sem erros.
