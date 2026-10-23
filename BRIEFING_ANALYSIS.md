@@ -1,176 +1,46 @@
-# 🎬 BRIEFING ANALYSIS — Cayque Gomes
+# Briefing Analysis — Cayque Gomes
 
-## FASE 1: Direção de Arte
+## Direção de arte
 
-### Gênero Cinematográfico
-**Documentário Musical / Road Movie Nordestino**
-A estética combina a autenticidade crua de documentários musicais (como "Sound of Metal" e "Buena Vista Social Club") com a energia vibrante de shows ao vivo. A atmosfera transmite a realidade do palco, bastidores e estúdio.
+A direção escolhida é **documentário musical / road movie nordestino**: palco, ensaio e estúdio tratados como cenas de uma mesma jornada. A composição usa preto profundo e grafite para criar silêncio visual; roxo e rosa entram como luz de palco, enquanto o dourado reserva atenção ao preço e a sinais de valor.
 
-### Paleta de 6 Cores
-| Cor | Hex | Uso |
-|-----|-----|-----|
-| Preto Profundo | `#0a0a0a` | Base / Background |
-| Roxo Escuro | `#1a0a2e` | Profundidade / Sombras |
-| Roxo Médio | `#6b21a8` | Elementos interativos |
-| Rosa Neon | `#ff2d7b` | Acento / CTAs / Destaques |
-| Dourado | `#f59e0b` | Preço / Elementos premium |
-| Branco Off | `#fafafa` | Texto / Contraste |
+A tipografia foi trocada para **Sora** nos títulos, **DM Sans** no corpo e **IBM Plex Mono** nos rótulos. Sora tem presença geométrica sem perder legibilidade em títulos grandes; DM Sans mantém o texto de venda mais confortável em telas pequenas.
 
-### Tipografias
-- **Display:** Space Grotesk — Moderna, geométrica, com personalidade musical
-- **Body:** Inter — Legibilidade máxima para textos longos
-- **Accent:** JetBrains Mono — Código, labels técnicos, detalhes
+A narrativa segue cinco momentos: abertura no vídeo do palco, autoridade e trajetória sobre a foto1, método em trilha de quatro movimentos, oferta em painel de compra e encerramento com a chamada “Seu lugar é no palco”.
 
-### Moodboard de Referências
-1. **"Whiplash" (2014)** — Intensidade, suor, dedicação ao instrumento
-2. **"La La Land" (2016)** — Iluminação roxa/rosa, atmosfera de palco
-3. **"A Star is Born" (2018)** — Autenticidade, bastidores, conexão palco-plateia
-4. **"Sound of Metal" (2019)** — Som como protagonista, imersão sensorial
-5. **"Dune" (2021)** — Escala, iluminação dramática, contraste profundo
+## Pesquisa de referências no GitHub
 
-### Estrutura Narrativa em 5 Atos
-1. **Prólogo (Hero):** "A guitarra do piseiro, sem mistério" — Promessa imediata
-2. **Ato I (Sobre):** Quem é Cayque — autoridade pelo palco, não pelo diploma
-3. **Ato II (Método):** Os 4 pilares — levada, variações, timbres, acordes
-4. **Ato III (Curso):** Ritmos de Piseiro — o produto como ferramenta de transformação
-5. **Epílogo (CTA):** "Seu lugar é no palco" — chamada final cinematográfica
+A pesquisa priorizou interfaces com scroll, motion e composição cinematográfica. Os repositórios foram usados como referência de padrões de interação, não como código copiado.
 
-### Atmosfera
-- **Grain overlay** — textura de filme analógico (3.5% opacidade)
-- **Glow effects** — luzes de palco difusas (roxo/rosa)
-- **Parallax** — profundidade no scroll
-- **Equalizer bars** — barras animadas no hero (referência musical)
-- **Vignette** — escurecimento nas bordas (foco no centro)
+1. [Temitayo-spec/Raft-Landing-Page](https://github.com/Temitayo-spec/Raft-Landing-Page) — landing page com Next.js, GSAP e Framer Motion. Adaptação: ritmo de entrada e transições entre blocos, reduzidos para manter foco no curso.
+2. [moumen-soliman/uitripled](https://github.com/moumen-soliman/uitripled) — blocos e páginas com Framer Motion e shadcn/Base UI. Adaptação: linguagem de componentes com estados de hover e foco consistentes, sem importar uma biblioteca visual pesada.
+3. [mohitvirli/mohitvirli.github.io](https://github.com/mohitvirli/mohitvirli.github.io) — portfólio com React Three Fiber, Drei e GSAP. Adaptação: a ideia de profundidade e cena foi mantida em CSS e vídeo, evitando WebGL porque não acrescentaria informação ao produto.
+4. [VinayMatta63/threejs-portfolio](https://github.com/VinayMatta63/threejs-portfolio) — portfólio interativo com Three.js e React Three Fiber. Adaptação: referência de narrativa por etapas; a execução final usa uma trilha CSS mais leve para o método.
+5. [zubair-trabzada/scroll-cinematic-claude](https://github.com/zubair-trabzada/scroll-cinematic-claude) — exploração de scroll cinematográfico e sequências de cena. Adaptação: parallax suave no vídeo e na foto, sem scroll-scrubbing de frames, que aumentaria o custo de carregamento.
 
----
+## Implementação aplicada
 
-## FASE 2: Copy Cinematográfica
+- O hero usa `public/assets/video1.mp4` como fundo, com `autoplay`, `muted`, `loop`, `playsInline`, `preload="metadata"` e `foto1.jpg` como poster.
+- O CTA “Entrar no curso”, o botão “Garantir meu acesso” e o CTA final compartilham a classe `living-cta`: brilho que atravessa o botão, gradiente em movimento, respiração de luz e elevação no hover.
+- A seção Sobre deixou de ter uma foto isolada. A `foto1.jpg` virou o fundo integral da cena e os quatro indicadores passaram a ser slabs editoriais com entrada escalonada, rotação sutil e elevação no hover.
+- A seção Método deixou a grade estática e virou uma trilha de quatro movimentos, com linha de continuidade, marcadores numerados, microinteração no hover e adaptação para duas colunas e uma coluna.
+- O texto foi mantido em tom próximo, didático e prático. Não foram adicionadas promessas financeiras ou depoimentos novos.
+- Foi preservado o fallback de `prefers-reduced-motion` para reduzir animações não essenciais.
 
-### Headline
-**"A guitarra do piseiro, sem mistério."**
-- Tagline de trailer: direta, promissora, sem clichê
-- 7 palavras — dentro do limite de 8
+## Auditoria de performance e acessibilidade
 
-### Subheadline
-**"Levadas, timbres, acordes e variações — aprenda com quem vive o palco, o ensaio e o estúdio."**
-- Promessa concreta e específica
-- Autoridade pela experiência, não por títulos
+- `Math.random()` foi removido do render das barras do equalizador; as alturas agora são determinísticas, evitando variações e trabalho desnecessário em renderizações.
+- As imagens foram redimensionadas para o uso real e o vídeo foi recomprimido para 1280px, de aproximadamente 9,4 MB para aproximadamente 2 MB.
+- O CSS usa `content-visibility: auto` nas seções abaixo da dobra e animações baseadas principalmente em `transform` e `opacity`.
+- O vídeo é carregado com `preload="metadata"`, conforme orientação do MDN para limitar o custo de carregamento; em dispositivos com redução de movimento, as animações são neutralizadas e o poster continua disponível.
+- Foram adicionados estados de foco visíveis, manifesto `public/manus-routes.json`, metadados de tema e descrição, e `.gitignore` para não versionar `node_modules` ou `dist` gerado.
+- Validação executada: `npm ci`, `npm run typecheck` e `npm run build` concluídos com sucesso.
 
-### CTAs
-- "Entrar no curso" — ação direta
-- "Ver o método" — curiosidade
-- "Garantir meu acesso" — urgência sem pressão
-- "Seu lugar é no palco" — identificação emocional
+## Limitações conhecidas
 
-### Metáforas Visuais
-- Palco = o lugar do aluno
-- Luzes de show = energia e atmosfera
-- Equalizer = musicalidade em movimento
-- Mãos na guitarra = prática real
+Os links de compra e redes sociais continuam como placeholders (`#`) porque o briefing não trouxe URLs finais. O próximo passo comercial é substituir esses destinos antes da publicação.
 
----
+## Referências técnicas
 
-## FASE 3: Repositórios Relevantes (Stack Utilizada)
-
-1. **framer-motion** — Animações UI (motion components, useScroll, useTransform)
-2. **GSAP + ScrollTrigger** — Scroll-based animations
-3. **Lucide React** — Ícones minimalistas e consistentes
-4. **Tailwind CSS 4** — Utility-first styling com @theme
-5. **Vite** — Build tool de alta performance
-
----
-
-## FASE 4: Componentes Implementados
-
-1. **Hero Cinematográfico** — Parallax, glow, equalizer, imagem de fundo
-2. **Navegação Fixa** — Blur on scroll, mobile fullscreen
-3. **Seção Sobre** — Stats grid + imagem + citação
-4. **Método (4 Pilares)** — Cards com hover gradient, números grandes
-5. **Curso/Pricing** — Border gradient animated, features list
-6. **Depoimentos** — Cards com quote icon, avatares com gradiente
-7. **CTA Final** — Scale on scroll, glow intenso
-8. **Footer** — Links, redes sociais, créditos
-9. **Grain Overlay** — Textura de filme fixa
-10. **Scroll Progress Bar** — Progress indicator no topo
-
----
-
-## FASE 5: Arquitetura de Animações
-
-### Easings Utilizados
-- **Entradas:** `[0.22, 1, 0.36, 1]` — Cinematic ease-out
-- **Springs:** `stiffness: 100, damping: 20` — Movimentos orgânicos
-- **Transições:** `duration: 0.8` — Ritmo cinematográfico
-
-### Scroll Triggers
-- Hero: parallax no título (y: 0 → -150)
-- About: fade-in + slide com useInView
-- Method: stagger de 0.15s entre cards
-- Course: border gradient animada
-- CTA: scale 0.95 → 1 no scroll
-
-### Efeitos Visuais
-- **Grain:** SVG noise filter a 3.5% de opacidade
-- **Glow:** box-shadow com blur de 40-80px
-- **Parallax:** useScroll + useTransform
-- **Equalizer:** CSS keyframes com delays aleatórios
-- **Gradient shift:** background-position animation
-
----
-
-## FASE 6: Decisões Técnicas
-
-### Por que React + Vite (não Next.js)?
-O ambiente de desenvolvimento utiliza Vite como bundler. A estrutura foi adaptada para funcionar perfeitamente com React + Vite + Tailwind CSS 4, mantendo toda a qualidade cinematográfica.
-
-### Performance
-- CSS variables via @theme (Tailwind 4)
-- Animações com `will-change` implícito via Framer Motion
-- Imagens com loading nativo
-- Code splitting automático via Vite
-- Bundle final: ~96KB gzipped (JS) + ~7KB (CSS)
-
-### Acessibilidade
-- `aria-label` em botões e links
-- `aria-hidden` em elementos decorativos
-- Contraste AA em textos
-- `prefers-reduced-motion` respeitado
-- Focus states visíveis
-
-### Mobile-First
-- Grid responsivo (1 col → 2 col)
-- Tipografia fluida (text-4xl → text-8xl)
-- Menu mobile fullscreen
-- Animações adaptadas
-
----
-
-## Variações do Hero (A/B Test Mental)
-
-### Variação A (Implementada)
-- Background com imagem de guitarrista no palco
-- Título centralizado com glow rosa
-- Equalizer bars na base
-- CTA "Entrar no curso" + "Ver o método"
-
-### Variação B (Alternativa)
-- Background com vídeo em loop (guitarra sendo tocada)
-- Título alinhado à esquerda
-- Cursor customizado seguindo o mouse
-- Equalizer lateral em vez de base
-- CTA único grande com preço integrado
-
----
-
-## Suposições Criativas Documentadas
-
-1. **Nome do curso:** "Ritmos de Piseiro" — baseado no briefing
-2. **Preço:** R$ 97 — confirmado no briefing
-3. **Stats (10+ anos, 500+ shows, etc.)** — estimativas criativas baseadas na experiência descrita
-4. **Depoimentos:** fictícios mas realistas, representando o público-alvo
-5. **Redes sociais:** links placeholder (#) — a serem preenchidos com URLs reais
-6. **Imagens:** geradas por AI com estética de palco roxo/rosa
-
----
-
-✅ Site gerado. Próximo passo: revisão com cliente.
+- [MDN — HTML video](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video)
+- [MDN — prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)

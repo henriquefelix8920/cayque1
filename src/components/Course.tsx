@@ -2,156 +2,68 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Check, Zap, BookOpen, Headphones, Guitar, ArrowRight, Star } from 'lucide-react';
 
-/* ═══════════════════════════════════════════
-   🎬 ATO III — O Curso
-   "Ritmos de Piseiro"
-   
-   Apresentação do produto com pricing
-   cinematográfico e lista de benefícios.
-   ═══════════════════════════════════════════ */
-
 const features = [
   { icon: Guitar, text: 'Levadas de piseiro — passo a passo da mão direita' },
-  { icon: Headphones, text: 'Estudo de timbres — como construir seu som do zero' },
-  { icon: BookOpen, text: 'Acordes aplicados ao contexto do piseiro e arrocha' },
-  { icon: Zap, text: 'Variações rítmicas — adaptar a levada em tempo real' },
+  { icon: Headphones, text: 'Estudo de timbres — como construir seu som' },
+  { icon: BookOpen, text: 'Acordes aplicados ao piseiro e arrocha' },
+  { icon: Zap, text: 'Variações rítmicas para tocar em tempo real' },
   { icon: Star, text: 'Referências de Silvano Salles, Unha Pintada e mais' },
-  { icon: Zap, text: 'Atualizações contínuas com base nas dúvidas da comunidade' },
+  { icon: Zap, text: 'Atualizações contínuas com a comunidade' },
 ];
-
-const bonuses = [
-  'Dicionário de acordes para consulta rápida',
-  'Aulas de arrocha — padrões e aplicações',
-  'Material complementar em evolução constante',
-  'Acesso à comunidade de alunos',
-];
+const bonuses = ['Dicionário de acordes para consulta rápida', 'Aulas de arrocha — padrões e aplicações', 'Material complementar em evolução constante', 'Acesso à comunidade de alunos'];
 
 const Course = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <section
-      id="curso"
-      ref={sectionRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
-    >
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[200px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Título */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 lg:mb-24"
-        >
-          <span className="font-mono text-xs text-brand-pink uppercase tracking-[0.3em] mb-4 block">
-            Ato III — O Curso
-          </span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            Ritmos de Piseiro
-          </h2>
-          <p className="max-w-2xl mx-auto text-lg text-brand-gray">
-            O curso que te coloca no palco com a guitarra certa, no ritmo certo, 
-            com a mão certa. Sem enrolação.
-          </p>
+    <section id="curso" ref={sectionRef} className="relative overflow-hidden py-24 lg:py-36">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_42%,rgba(255,45,123,.12),transparent_28%),radial-gradient(circle_at_85%_65%,rgba(107,33,168,.16),transparent_30%)]" aria-hidden="true" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .7 }} className="mb-14 max-w-3xl lg:mb-20">
+          <span className="eyebrow">Ato III — O curso</span>
+          <h2 className="mt-5 font-display text-4xl font-extrabold tracking-[-.055em] md:text-6xl">Ritmos de Piseiro</h2>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-white/65 md:text-lg">O curso que te coloca no palco com a guitarra certa, no ritmo certo, com a mão certa.</p>
         </motion.div>
 
-        {/* Card principal do curso */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="border-gradient-animated p-8 lg:p-12 rounded-3xl">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-              {/* Coluna esquerda: Conteúdo */}
-              <div>
-                <h3 className="font-display font-semibold text-2xl text-brand-white mb-6">
-                  O que você recebe:
-                </h3>
-                <ul className="space-y-4">
-                  {features.map((feature, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-                      className="flex items-start gap-3"
-                    >
-                      <Check size={18} className="text-brand-pink mt-0.5 flex-shrink-0" />
-                      <span className="text-brand-gray text-sm leading-relaxed">
-                        {feature.text}
-                      </span>
+        <motion.div initial={{ opacity: 0, y: 35 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .8, delay: .15 }} className="course-panel">
+          <div className="grid gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-16">
+            <div>
+              <h3 className="font-display text-2xl font-bold text-white">O que você recebe</h3>
+              <ul className="mt-7 grid gap-4 sm:grid-cols-2">
+                {features.map((feature, i) => {
+                  const Icon = feature.icon;
+                  return (
+                    <motion.li key={i} initial={{ opacity: 0, x: -15 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ delay: .25 + i * .06 }} className="flex gap-3 text-sm leading-6 text-white/65">
+                      <Check size={17} className="mt-1 shrink-0 text-brand-pink" />
+                      <span>{feature.text}</span>
+                      <Icon size={14} className="mt-1 shrink-0 text-white/20" />
                     </motion.li>
-                  ))}
-                </ul>
-              </div>
+                  );
+                })}
+              </ul>
+            </div>
 
-              {/* Coluna direita: Bônus + Preço */}
-              <div>
-                <h3 className="font-display font-semibold text-2xl text-brand-white mb-6">
-                  Bônus inclusos:
-                </h3>
-                <ul className="space-y-3 mb-10">
-                  {bonuses.map((bonus, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
-                      className="flex items-start gap-3"
-                    >
-                      <Star size={14} className="text-brand-gold mt-1 flex-shrink-0" />
-                      <span className="text-brand-gray text-sm">
-                        {bonus}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* Preço */}
-                <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05]">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-sm text-brand-gray">Investimento único</span>
+            <div className="border-t border-white/10 pt-10 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+              <h3 className="font-display text-2xl font-bold text-white">Bônus inclusos</h3>
+              <ul className="mt-6 space-y-3">
+                {bonuses.map((bonus) => <li key={bonus} className="flex gap-3 text-sm text-white/60"><Star size={14} className="mt-1 shrink-0 text-brand-gold" />{bonus}</li>)}
+              </ul>
+              <div className="purchase-box mt-9">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <span className="block text-xs uppercase tracking-[.2em] text-white/45">Investimento único</span>
+                    <div className="mt-2 flex items-baseline gap-1"><span className="text-sm text-white/50">R$</span><span className="font-display text-6xl font-extrabold tracking-[-.06em] text-white">97</span></div>
                   </div>
-                  <div className="flex items-baseline gap-1 mb-1">
-                    <span className="text-sm text-brand-gray">R$</span>
-                    <span className="font-display font-bold text-5xl text-brand-white">97</span>
-                  </div>
-                  <p className="text-xs text-brand-gray mb-6">
-                    Acesso imediato • Atualizações contínuas • Sem mensalidade
-                  </p>
-                  <a
-                    href="#"
-                    className="group flex items-center justify-center gap-2 w-full py-4 bg-brand-pink text-white font-display font-semibold text-lg rounded-xl hover:bg-brand-pink-light transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,45,123,0.3)]"
-                  >
-                    Garantir meu acesso
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  <span className="rounded-full border border-brand-gold/30 px-3 py-1 text-xs text-brand-gold">sem mensalidade</span>
                 </div>
+                <p className="mt-4 text-xs leading-5 text-white/45">Acesso imediato, atualizações contínuas e conteúdo em evolução.</p>
+                <a href="#" className="living-cta living-cta-primary mt-7 w-full justify-center"><span className="living-cta-shine" aria-hidden="true" /><span className="relative z-10 flex items-center gap-2">Garantir meu acesso <ArrowRight size={18} /></span></a>
               </div>
             </div>
           </div>
         </motion.div>
-
-        {/* Nota sobre atualizações */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-10 max-w-xl mx-auto"
-        >
-          <p className="text-sm text-brand-gray/70 italic">
-            O curso está em construção contínua — novas aulas e materiais são adicionados 
-            conforme as dúvidas e necessidades da comunidade de alunos surgem.
-          </p>
-        </motion.div>
+        <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-5 text-white/40">O curso cresce com as dúvidas da comunidade: novas aulas e materiais entram conforme a necessidade de quem está praticando.</p>
       </div>
     </section>
   );

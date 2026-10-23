@@ -2,108 +2,12 @@ import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Guitar } from 'lucide-react';
 
-/* ═══════════════════════════════════════════
-   🎬 EPÍLOGO — CTA Final
-   "Entre em cena"
-   
-   Última chamada para ação com impacto
-   visual máximo e urgência cinematográfica.
-   ═══════════════════════════════════════════ */
-
 const CTA = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 1]);
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative py-32 lg:py-48 overflow-hidden"
-    >
-      {/* Background com glow intenso */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-pink/10 rounded-full blur-[180px]" />
-        <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-brand-purple/15 rounded-full blur-[150px]" />
-      </div>
-
-      <motion.div
-        style={{ scale, opacity }}
-        className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10"
-      >
-        {/* Ícone */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
-          className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-pink/10 border border-brand-pink/20 mb-8"
-        >
-          <Guitar size={28} className="text-brand-pink" />
-        </motion.div>
-
-        {/* Título */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display font-bold text-4xl md:text-5xl lg:text-7xl leading-[1.1] mb-6"
-        >
-          Seu lugar é no<br />
-          <span className="text-glow-pink text-brand-pink">palco.</span>
-        </motion.h2>
-
-        {/* Subtítulo */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="max-w-xl mx-auto text-lg md:text-xl text-brand-gray mb-10"
-        >
-          Pare de copiar. Comece a entender. Entre no curso e descubra 
-          como a guitarra do piseiro funciona de verdade.
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col items-center gap-4"
-        >
-          <a
-            href="#"
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-brand-pink text-white font-display font-semibold text-xl rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,45,123,0.4)] hover:scale-[1.02]"
-          >
-            <span className="relative z-10 flex items-center gap-3">
-              Entrar no curso agora
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-pink via-brand-purple-light to-brand-pink opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </a>
-
-          <div className="flex items-center gap-4 mt-2">
-            <span className="text-3xl font-display font-bold text-brand-gold">R$ 97</span>
-            <span className="text-sm text-brand-gray">acesso imediato e vitalício</span>
-          </div>
-        </motion.div>
-
-        {/* Garantia */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-8 text-xs text-brand-gray/50"
-        >
-          Pagamento seguro • Acesso instantâneo • Satisfação garantida
-        </motion.p>
-      </motion.div>
-    </section>
-  );
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const scale = useTransform(scrollYProgress, [0, .5], [.96, 1]);
+  return <section ref={sectionRef} className="relative overflow-hidden py-28 lg:py-44"><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(255,45,123,.16),transparent_34%)]" aria-hidden="true" /><motion.div style={{ scale }} className="relative mx-auto max-w-4xl px-6 text-center lg:px-10"><motion.div initial={{ opacity: 0, scale: .6 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ type: 'spring', stiffness: 100, damping: 20 }} className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-brand-pink/30 bg-brand-pink/10"><Guitar size={27} className="text-brand-pink" /></motion.div><motion.h2 initial={{ opacity: 0, y: 25 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .15, duration: .7 }} className="mt-8 font-display text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Seu lugar é no<br /><span className="text-brand-pink text-glow-pink">palco.</span></motion.h2><motion.p initial={{ opacity: 0, y: 18 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3, duration: .7 }} className="mx-auto mt-7 max-w-xl text-base leading-7 text-white/65 md:text-lg">Pare de copiar. Comece a entender. Entre no curso e descubra como a guitarra do piseiro funciona de verdade.</motion.p><motion.div initial={{ opacity: 0, y: 18 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .45, duration: .7 }} className="mt-10 flex flex-col items-center gap-4"><a href="#curso" className="living-cta living-cta-primary text-lg"><span className="living-cta-shine" aria-hidden="true" /><span className="relative z-10 flex items-center gap-3">Entrar no curso agora <ArrowRight size={20} /></span></a><div className="flex items-center gap-3"><span className="font-display text-3xl font-extrabold text-brand-gold">R$ 97</span><span className="text-sm text-white/45">acesso imediato e vitalício</span></div></motion.div><p className="mt-8 text-xs text-white/35">Pagamento seguro · Acesso instantâneo · Satisfação garantida</p></motion.div></section>;
 };
 
 export default CTA;
