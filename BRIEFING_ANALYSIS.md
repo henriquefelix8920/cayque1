@@ -6,7 +6,7 @@ A direção escolhida é **documentário musical / road movie nordestino**: palc
 
 A tipografia foi trocada para **Sora** nos títulos, **DM Sans** no corpo e **IBM Plex Mono** nos rótulos. Sora tem presença geométrica sem perder legibilidade em títulos grandes; DM Sans mantém o texto de venda mais confortável em telas pequenas.
 
-A narrativa segue cinco momentos: abertura no vídeo do palco, autoridade e trajetória sobre a foto1, método em trilha de quatro movimentos, oferta em painel de compra e encerramento com a chamada “Seu lugar é no palco”.
+A narrativa segue cinco momentos: abertura no vídeo do palco, autoridade e trajetória sobre a foto1, método em trilha de quatro movimentos sobre a foto2, oferta em painel de compra e encerramento com a chamada “Seu lugar é no palco”.
 
 ## Pesquisa de referências no GitHub
 
@@ -23,7 +23,8 @@ A pesquisa priorizou interfaces com scroll, motion e composição cinematográfi
 - O hero usa `public/assets/video1.mp4` como fundo, com `autoplay`, `muted`, `loop`, `playsInline`, `preload="metadata"` e `foto1.jpg` como poster.
 - O CTA “Entrar no curso”, o botão “Garantir meu acesso” e o CTA final compartilham a classe `living-cta`: brilho que atravessa o botão, gradiente em movimento, respiração de luz e elevação no hover.
 - A seção Sobre deixou de ter uma foto isolada. A `foto1.jpg` virou o fundo integral da cena e os quatro indicadores passaram a ser slabs editoriais com entrada escalonada, rotação sutil e elevação no hover.
-- A seção Método deixou a grade estática e virou uma trilha de quatro movimentos, com linha de continuidade, marcadores numerados, microinteração no hover e adaptação para duas colunas e uma coluna.
+- A seção Método usa `foto2.jpg` como plano de fundo e deixou a grade estática para virar uma trilha de quatro movimentos, com linha de continuidade, marcadores numerados, microinteração no hover e adaptação para duas colunas e uma coluna.
+- Os quatro boxes da seção Sobre e os quatro boxes do Método têm deslocamentos independentes vinculados ao `scrollYProgress`, criando flutuação percebida também em telas pequenas.
 - O texto foi mantido em tom próximo, didático e prático. Não foram adicionadas promessas financeiras ou depoimentos novos.
 - Foi preservado o fallback de `prefers-reduced-motion` para reduzir animações não essenciais.
 
@@ -33,6 +34,7 @@ A pesquisa priorizou interfaces com scroll, motion e composição cinematográfi
 - As imagens foram redimensionadas para o uso real e o vídeo foi recomprimido para 1280px, de aproximadamente 9,4 MB para aproximadamente 2 MB.
 - O CSS usa `content-visibility: auto` nas seções abaixo da dobra e animações baseadas principalmente em `transform` e `opacity`.
 - O vídeo é carregado com `preload="metadata"`, conforme orientação do MDN para limitar o custo de carregamento; em dispositivos com redução de movimento, as animações são neutralizadas e o poster continua disponível.
+- Os CTAs foram reforçados com halo neon, anel pulsante e flutuação contínua; o efeito é desligado no modo de movimento reduzido.
 - Foram adicionados estados de foco visíveis, manifesto `public/manus-routes.json`, metadados de tema e descrição, e `.gitignore` para não versionar `node_modules` ou `dist` gerado.
 - Validação executada: `npm ci`, `npm run typecheck` e `npm run build` concluídos com sucesso.
 
