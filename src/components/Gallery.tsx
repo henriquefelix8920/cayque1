@@ -20,11 +20,11 @@ const galleryPhotos = [
   { src: '/assets/cayque2.jpeg', label: 'Cayque Gomes — registro 02' },
   { src: '/assets/cayque3.JPEG', label: 'Cayque Gomes — registro 03' },
   { src: '/assets/cayque4.JPEG', label: 'Cayque Gomes — registro 04' },
-  { src: '/assets/cayque5.jpg', label: 'Cayque Gomes — registro 05' },
-  { src: '/assets/cayque6.jpg', label: 'Cayque Gomes — registro 06' },
-  { src: '/assets/cayque7.jpg', label: 'Cayque Gomes — registro 07' },
-  { src: '/assets/cayque8.jpg', label: 'Cayque Gomes — registro 08' },
-  { src: '/assets/cayque9.jpg', label: 'Cayque Gomes — registro 09' },
+  { src: '/assets/cayque5.JPEG', label: 'Cayque Gomes — registro 05' },
+  { src: '/assets/cayque6.JPEG', label: 'Cayque Gomes — registro 06' },
+  { src: '/assets/cayque7.JPEG', label: 'Cayque Gomes — registro 07' },
+  { src: '/assets/cayque8.JPEG', label: 'Cayque Gomes — registro 08' },
+  { src: '/assets/cayque9.JPEG', label: 'Cayque Gomes — registro 09' },
 ];
 
 /** Embaralhamento Fisher–Yates */
