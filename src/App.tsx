@@ -6,6 +6,7 @@ import About from './components/About';
 import Method from './components/Method';
 import Course from './components/Course';
 import Testimonials from './components/Testimonials';
+import Gallery from './components/Gallery';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import GrainOverlay from './components/GrainOverlay';
@@ -61,6 +62,9 @@ function App() {
 
       {/* ═══ DEPOIMENTOS — A Comunidade ═══ */}
       <Testimonials />
+
+      {/* ═══ GALERIA — Bastidores em fotos ═══ */}
+      <Gallery />
 
       {/* ═══ EPÍLOGO — CTA Final ═══ */}
       <CTA />
