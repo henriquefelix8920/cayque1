@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, ArrowUpRight, Images } from 'lucide-react';
+import { X, ArrowUpRight, Camera } from 'lucide-react';
 
 const photos = [
   { src: 'https://raw.githubusercontent.com/henriquefelix8920/cayque1/main/cayque1.PNG', alt: 'Cayque Gomes — retrato 1' },
@@ -51,7 +51,7 @@ const Gallery = () => {
             </motion.button>
           ))}
         </div>
-        <div className="mt-8 flex items-center gap-3 text-[10px] uppercase tracking-[.22em] text-white/35"><Images size={15} className="text-brand-pink" /> 09 registros · movimento aleatório</div>
+        <div className="mt-8 flex items-center gap-3 text-[10px] uppercase tracking-[.22em] text-white/35"><Camera size={15} className="text-brand-pink" /> 09 registros · movimento aleatório</div>
       </div>
       {selected !== null && (
         <div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" onClick={() => setSelected(null)} onKeyDown={(e) => e.key === 'Escape' && setSelected(null)}>
