@@ -12,6 +12,7 @@ const navLinks = [
   { label: 'Método', href: '#metodo' },
   { label: 'Curso', href: '#curso' },
   { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'Galeria', href: '#galeria' },
 ];
 
 const Navigation = () => {
