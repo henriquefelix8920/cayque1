@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Camera, Pause, Play } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const photos = [
   { src: '/assets/gallery/gallery-01.avif', alt: 'Cayque Gomes no palco, retrato 1' },
@@ -17,41 +17,14 @@ const wrapIndex = (index: number) => (index + photos.length) % photos.length;
 
 export default function Gallery() {
   const [current, setCurrent] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const [pageVisible, setPageVisible] = useState(true);
   const touchStartX = useRef<number | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
 
   const currentPhoto = photos[current];
-  const progress = useMemo(() => `${String(current + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`, [current]);
   const next = () => setCurrent((index) => wrapIndex(index + 1));
   const previous = () => setCurrent((index) => wrapIndex(index - 1));
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { rootMargin: '100px 0px', threshold: 0.01 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const updateVisibility = () => setPageVisible(!document.hidden);
-    updateVisibility();
-    document.addEventListener('visibilitychange', updateVisibility);
-    return () => document.removeEventListener('visibilitychange', updateVisibility);
-  }, []);
-
-  useEffect(() => {
-    if (!playing || !isVisible || !pageVisible || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const timer = window.setInterval(next, 5600);
-    return () => window.clearInterval(timer);
-  }, [playing, isVisible, pageVisible]);
-
   return (
     <section
-      ref={sectionRef}
       id="galeria"
       className="gallery-section relative isolate overflow-hidden py-20 md:py-28"
       aria-roledescription="carrossel"
@@ -99,15 +72,6 @@ export default function Gallery() {
                 decoding="async"
                 fetchPriority={current === 0 ? 'high' : 'auto'}
               />
-              <span className="gallery-carousel-shade" aria-hidden="true" />
-              <div className="gallery-carousel-topline" aria-hidden="true">
-                <span>Cayque Gomes · arquivo visual</span>
-                <span>{progress}</span>
-              </div>
-              <div className="gallery-carousel-meta">
-                <span className="gallery-carousel-caption">{currentPhoto.alt}</span>
-                <span className="gallery-carousel-swipe-hint">deslize para explorar</span>
-              </div>
               <button className="gallery-carousel-arrow gallery-carousel-prev" type="button" onClick={previous} aria-label="Foto anterior">
                 <ArrowLeft size={19} />
               </button>
@@ -117,31 +81,6 @@ export default function Gallery() {
             </div>
           </div>
 
-          <div className="gallery-carousel-controls">
-            <div className="gallery-carousel-timeline" aria-hidden="true">
-              <span style={{ width: `${((current + 1) / photos.length) * 100}%` }} />
-            </div>
-            <div className="gallery-carousel-dots" aria-label="Escolher foto">
-              {photos.map((photo, index) => (
-                <button
-                  key={photo.src}
-                  type="button"
-                  className={`gallery-carousel-dot ${index === current ? 'is-active' : ''}`}
-                  onClick={() => setCurrent(index)}
-                  aria-label={`Mostrar foto ${index + 1}`}
-                  aria-current={index === current ? 'true' : undefined}
-                />
-              ))}
-            </div>
-            <button className="gallery-carousel-play" type="button" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Pausar carrossel' : 'Retomar carrossel'}>
-              {playing ? <Pause size={13} /> : <Play size={13} />}
-              <span>{playing ? 'Pausar' : 'Reproduzir'}</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-6 flex items-center gap-3 text-[10px] uppercase tracking-[.22em] text-white/35">
-          <Camera size={15} className="text-brand-pink" /> 09 registros · setas, toque ou deslize para navegar
         </div>
       </div>
     </section>
