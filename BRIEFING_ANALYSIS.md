@@ -20,10 +20,10 @@ A pesquisa priorizou interfaces com scroll, motion e composição cinematográfi
 
 ## Implementação aplicada
 
-- O hero usa `public/assets/video1.mp4` como fundo, com `autoplay`, `muted`, `loop`, `playsInline`, `preload="metadata"` e `foto1.jpg` como poster.
+- O hero usa `public/assets/video1.mp4` como fundo, com `autoplay`, `muted`, `loop`, `playsInline`, `preload="metadata"` e `foto1.webp` como poster.
 - O CTA “Entrar no curso”, o botão “Garantir meu acesso” e o CTA final compartilham a classe `living-cta`: brilho que atravessa o botão, gradiente em movimento, respiração de luz e elevação no hover.
-- A seção Sobre deixou de ter uma foto isolada. A `foto1.jpg` virou o fundo integral da cena e os quatro indicadores passaram a ser slabs editoriais com entrada escalonada, rotação sutil e elevação no hover.
-- A seção Método usa `foto2.jpg` como plano de fundo e deixou a grade estática para virar uma trilha de quatro movimentos, com linha de continuidade, marcadores numerados, microinteração no hover e adaptação para duas colunas e uma coluna.
+- A seção Sobre deixou de ter uma foto isolada. A `foto1.webp` virou o fundo integral da cena e os quatro indicadores passaram a ser slabs editoriais com entrada escalonada, rotação sutil e elevação no hover.
+- A seção Método usa `foto2.webp` como plano de fundo e deixou a grade estática para virar uma trilha de quatro movimentos, com linha de continuidade, marcadores numerados, microinteração no hover e adaptação para duas colunas e uma coluna.
 - Os quatro boxes da seção Sobre e os quatro boxes do Método têm deslocamentos independentes vinculados ao `scrollYProgress`, criando flutuação percebida também em telas pequenas.
 - O texto foi mantido em tom próximo, didático e prático. Não foram adicionadas promessas financeiras ou depoimentos novos.
 - Foi preservado o fallback de `prefers-reduced-motion` para reduzir animações não essenciais.
@@ -49,7 +49,7 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 
 ## Auditoria mobile e velocidade — rodada final
 
-- O hero mantém o vídeo como fundo em telas médias e grandes; abaixo de 768px, o vídeo não é instanciado e `foto1.jpg` otimizada assume o fundo. Isso elimina cerca de 2 MB e o custo de decodificação contínua do vídeo no celular sem deixar a primeira dobra vazia.
+- O hero mantém o vídeo como fundo em telas médias e grandes; abaixo de 768px, o vídeo não é instanciado e `foto1.webp` otimizada assume o fundo. Isso elimina cerca de 2 MB e o custo de decodificação contínua do vídeo no celular sem deixar a primeira dobra vazia.
 - O preço e a frase “Acesso completo · atualizações contínuas” foram retirados do hero.
 - As amplitudes de parallax dos boxes foram reduzidas para movimentos sutis, evitando que os cards se sobreponham quando a seção vira uma coluna no celular.
 - O Ato II agora usa ícones de cada pilar em marcadores animados, em vez de números; a animação tem flutuação e rotação leves e mantém o fallback para movimento reduzido.
@@ -66,11 +66,11 @@ Os links de compra e redes sociais continuam como placeholders (`#`) porque o br
 
 ## Fundo da seção final
 
-- A seção “Seu lugar é no palco” agora usa `foto3.jpg` como plano de fundo, com parallax vertical suave, overlay escuro em gradiente e glow rosa para manter o texto e o CTA legíveis em desktop e mobile.
+- A seção “Seu lugar é no palco” agora usa `foto3.webp` como plano de fundo, com parallax vertical suave, overlay escuro em gradiente e glow rosa para manter o texto e o CTA legíveis em desktop e mobile.
 
 ## Redesign cinematográfico do Ato II
 
-- Os quatro boxes, a linha de conexão e os marcadores circulares anteriores foram removidos como estrutura visual. O Ato II agora funciona como uma narrativa editorial contínua sobre a foto2.jpg.
+- Os quatro boxes, a linha de conexão e os marcadores circulares anteriores foram removidos como estrutura visual. O Ato II agora funciona como uma narrativa editorial contínua sobre a foto2.webp.
 - A abertura usa a headline “Não é só tocar. É entender a levada.” em escala expressiva, seguida de quatro capítulos assimétricos: Levada real, Variações rítmicas, Timbres & sonoridades e Acordes aplicados.
 - Cada capítulo usa índice, ícone discreto, tag, texto curto e uma marca gráfica vertical que pulsa como um sinal de groove. Não há dependência de hover para compreender o conteúdo.
 - O scroll movimenta a fotografia e desloca os capítulos com amplitudes moderadas. Em telas pequenas, a composição vira fluxo vertical, sem pinning e sem deslocamentos agressivos.
@@ -86,7 +86,7 @@ Referências técnicas consultadas: [GSAP ScrollTrigger Storytelling](https://gi
 
 ## Auditoria final de velocidade e fluidez
 
-- A seção “Seu lugar é no palco” deixou de escalar todo o conteúdo durante o scroll. Texto, preço e CTA permanecem estáveis; somente a fotografia `foto3.jpg` mantém o parallax controlado em uma camada própria.
+- A seção “Seu lugar é no palco” deixou de escalar todo o conteúdo durante o scroll. Texto, preço e CTA permanecem estáveis; somente a fotografia `foto3.webp` mantém o parallax controlado em uma camada própria.
 - O grão cinematográfico global deixou de usar `feTurbulence`, que recalculava uma textura procedural em toda a viewport, e passou a usar um padrão CSS pontilhado de baixo custo.
 - A fotografia do CTA usa `contain: paint` e `will-change` apenas na camada realmente animada.
 - A auditoria confirmou que o mobile continua usando o vídeo de 494 KB e que as imagens fotográficas permanecem abaixo de 130 KB cada.

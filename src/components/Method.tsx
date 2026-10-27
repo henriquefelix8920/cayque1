@@ -23,7 +23,7 @@ const Method = () => {
   ];
 
   return <section id="metodo" ref={sectionRef} className="method-cinema relative overflow-hidden py-24 lg:py-36">
-    <motion.div style={{ y: imageY, scale: imageScale, backgroundImage: "url('/assets/foto2.jpg')" }} className="absolute inset-[-7%] -z-20 bg-cover bg-center" aria-hidden="true" />
+    <motion.div style={{ y: imageY, scale: imageScale, backgroundImage: "url('/assets/foto2.webp')" }} className="absolute inset-[-7%] -z-20 bg-cover bg-center" aria-hidden="true" />
     <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,6,12,.96)_0%,rgba(8,6,12,.72)_42%,rgba(8,6,12,.28)_100%)]" aria-hidden="true" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08060c_0%,rgba(8,6,12,.18)_25%,rgba(8,6,12,.62)_57%,#08060c_100%)]" aria-hidden="true" /><div className="method-cinema-noise" aria-hidden="true" />
     <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
       <motion.div initial={{ opacity: 0, y: 34 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .8 }} className="method-opening max-w-5xl">

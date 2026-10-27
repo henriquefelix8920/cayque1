@@ -14,8 +14,8 @@ const Hero = () => {
 
   return (
     <section id="inicio" ref={containerRef} className="hero relative flex min-h-[100svh] items-center justify-center overflow-hidden">
-      <motion.div style={{ scale: videoScale, backgroundImage: "url('/assets/foto1.jpg')" }} className="absolute inset-0 pointer-events-none bg-cover bg-center" aria-hidden="true">
-        <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.jpg" aria-hidden="true"><source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" /><source src="/assets/video1.mp4" type="video/mp4" /></video>
+      <motion.div style={{ scale: videoScale, backgroundImage: "url('/assets/foto1.webp')" }} className="absolute inset-0 pointer-events-none bg-cover bg-center" aria-hidden="true">
+        <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.webp" aria-hidden="true"><source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" /><source src="/assets/video1.mp4" type="video/mp4" /></video>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,6,12,.88)_0%,rgba(8,6,12,.46)_48%,rgba(8,6,12,.72)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,6,12,.38)_0%,transparent_40%,rgba(8,6,12,.96)_100%)]" />
         <div className="absolute inset-0 bg-brand-pink/10 mix-blend-screen" />

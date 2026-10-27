@@ -22,7 +22,7 @@ const About = () => {
   ];
 
   return <section id="sobre" ref={sectionRef} className="about-cinema relative isolate overflow-hidden py-24 lg:py-36">
-    <motion.div style={{ y: imageY, backgroundImage: "url('/assets/foto1.jpg')" }} className="absolute inset-[-5%] -z-20 bg-cover bg-center" aria-hidden="true" />
+    <motion.div style={{ y: imageY, backgroundImage: "url('/assets/foto1.webp')" }} className="absolute inset-[-5%] -z-20 bg-cover bg-center" aria-hidden="true" />
     <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,6,12,.98)_8%,rgba(8,6,12,.82)_44%,rgba(8,6,12,.3)_100%)]" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08060c_0%,transparent_18%,rgba(8,6,12,.94)_92%,#08060c_100%)]" /><div className="about-cinema-line" aria-hidden="true" />
     <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[.82fr_1.18fr] lg:items-center lg:px-10">
       <motion.div initial={{ opacity: 0, x: -30 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: .8 }}>
