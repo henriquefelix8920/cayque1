@@ -64,32 +64,22 @@
 @media (prefers-reduced-motion: reduce) { .gallery-photo img, .gallery-photo-open { transition: none; } }
 
 
-/* Galeria editorial: uma imagem dominante, sem miniaturas, com navegação discreta. */
-.gallery-carousel { max-width: 78rem; margin-inline: auto; }
-.gallery-carousel-stage { position: relative; }
-.gallery-carousel-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; min-height: clamp(23rem, 58vw, 47rem); background: transparent; border: 0; box-shadow: none; isolation: isolate; }
-.gallery-carousel-image { display: block; width: 100%; height: 100%; position: absolute; inset: 0; object-fit: contain; object-position: center; background: transparent; animation: gallery-image-in .65s cubic-bezier(.2,.7,.2,1) both; }
-.gallery-carousel-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(8,6,12,.4), transparent 24%, transparent 58%, rgba(8,6,12,.86)); }
-.gallery-carousel-topline, .gallery-carousel-meta { position: absolute; z-index: 2; right: clamp(1rem, 3vw, 2.4rem); left: clamp(1rem, 3vw, 2.4rem); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.gallery-carousel-topline { top: clamp(1rem, 3vw, 2.4rem); color: rgba(255,255,255,.62); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; }
-.gallery-carousel-meta { bottom: clamp(1rem, 3vw, 2.4rem); align-items: end; }
-.gallery-carousel-caption { max-width: 36rem; color: rgba(255,255,255,.9); font-family: var(--font-display); font-size: clamp(.85rem, 1.5vw, 1.15rem); letter-spacing: -.02em; }
-.gallery-carousel-swipe-hint { color: rgba(255,255,255,.42); font-family: var(--font-mono); font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; }
-.gallery-carousel-arrow { position: absolute; z-index: 3; top: 50%; display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border: 1px solid rgba(255,255,255,.38); border-radius: 50%; color: white; background: rgba(8,6,12,.48); transform: translateY(-50%); transition: background .25s ease, border-color .25s ease, transform .25s ease; }
-.gallery-carousel-prev { left: clamp(1rem, 3vw, 2.4rem); }
-.gallery-carousel-next { right: clamp(1rem, 3vw, 2.4rem); }
+/* Carrossel transparente: anterior menor, imagem principal maior e próxima menor. */
+.gallery-carousel { max-width: 86rem; margin-inline: auto; }
+.gallery-carousel-stage { display: grid; grid-template-columns: minmax(7rem, 19%) minmax(0, 1fr) minmax(7rem, 19%); align-items: center; gap: clamp(.5rem, 2.4vw, 2.2rem); min-height: clamp(24rem, 52vw, 43rem); }
+.gallery-carousel-card { position: relative; display: block; width: 100%; overflow: hidden; padding: 0; border: 0; background: transparent; cursor: pointer; isolation: isolate; transition: opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1), filter .65s ease; }
+.gallery-carousel-card img { display: block; width: 100%; height: 100%; object-fit: contain; background: transparent; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+.gallery-carousel-card-prev, .gallery-carousel-card-next { aspect-ratio: 3 / 4; opacity: .48; filter: saturate(.68); transform: scale(.82); }
+.gallery-carousel-card-prev:hover, .gallery-carousel-card-next:hover, .gallery-carousel-card-prev:focus-visible, .gallery-carousel-card-next:focus-visible { opacity: .82; filter: saturate(1); transform: scale(.88); }
+.gallery-carousel-card-current { z-index: 1; aspect-ratio: 16 / 10; min-height: clamp(22rem, 48vw, 40rem); cursor: default; }
+.gallery-carousel-card-current img { animation: gallery-image-in .65s cubic-bezier(.2,.7,.2,1) both; }
+.gallery-carousel-arrow { position: absolute; z-index: 3; top: 50%; display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border: 1px solid rgba(255,255,255,.38); border-radius: 50%; color: white; background: rgba(8,6,12,.42); transform: translateY(-50%); transition: background .25s ease, border-color .25s ease, transform .25s ease; }
+.gallery-carousel-prev { left: clamp(.6rem, 2.5vw, 2rem); }
+.gallery-carousel-next { right: clamp(.6rem, 2.5vw, 2rem); }
 .gallery-carousel-arrow:hover { border-color: var(--color-brand-pink); background: rgba(255,45,123,.72); transform: translateY(-50%) scale(1.06); }
-.gallery-carousel-controls { display: grid; grid-template-columns: minmax(8rem, 1fr) auto auto; align-items: center; gap: 1.25rem; margin-top: 1.25rem; }
-.gallery-carousel-timeline { height: 1px; overflow: hidden; background: rgba(255,255,255,.18); }
-.gallery-carousel-timeline span { display: block; height: 100%; background: var(--color-brand-pink); transition: width .5s cubic-bezier(.2,.7,.2,1); }
-.gallery-carousel-dots { display: flex; align-items: center; justify-content: center; gap: .55rem; }
-.gallery-carousel-dot { width: .48rem; height: .48rem; padding: 0; border: 0; border-radius: 999px; background: rgba(255,255,255,.3); cursor: pointer; transition: width .25s ease, background .25s ease; }
-.gallery-carousel-dot.is-active { width: 1.65rem; background: var(--color-brand-pink); }
-.gallery-carousel-play { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: .55rem .85rem; color: rgba(255,255,255,.7); background: rgba(255,255,255,.04); font-size: .7rem; transition: color .2s ease, border-color .2s ease; }
-.gallery-carousel-play:hover { color: white; border-color: rgba(255,45,123,.6); }
-@keyframes gallery-image-in { from { opacity: .2; transform: scale(1.035); } to { opacity: 1; transform: scale(1); } }
-@media (max-width: 760px) { .gallery-carousel-frame { aspect-ratio: 4 / 5; min-height: 0; } .gallery-carousel-arrow { width: 2.6rem; height: 2.6rem; } }
-@media (prefers-reduced-motion: reduce) { .gallery-carousel-image { animation: none; } .gallery-carousel-arrow, .gallery-carousel-timeline span { transition: none; } }
+@keyframes gallery-image-in { from { opacity: .2; transform: scale(1.045); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 760px) { .gallery-carousel-stage { grid-template-columns: minmax(3.8rem, 18%) minmax(0, 1fr) minmax(3.8rem, 18%); gap: .35rem; min-height: 26rem; } .gallery-carousel-card-prev, .gallery-carousel-card-next { transform: scale(.9); } .gallery-carousel-card-current { min-height: 26rem; } .gallery-carousel-arrow { width: 2.6rem; height: 2.6rem; } }
+@media (prefers-reduced-motion: reduce) { .gallery-carousel-card, .gallery-carousel-card img, .gallery-carousel-arrow { transition: none; } .gallery-carousel-card-current img { animation: none; } }
 
 /* Performance tuning: preserve cinematic motion while avoiding unnecessary rendering work. */
 .animated-title-line > span { will-change: auto; }

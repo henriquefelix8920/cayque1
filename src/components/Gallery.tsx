@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const photos = [
@@ -17,14 +17,44 @@ const wrapIndex = (index: number) => (index + photos.length) % photos.length;
 
 export default function Gallery() {
   const [current, setCurrent] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const touchStartX = useRef<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
+  const previousIndex = wrapIndex(current - 1);
+  const nextIndex = wrapIndex(current + 1);
+  const previousPhoto = photos[previousIndex];
   const currentPhoto = photos[current];
+  const nextPhoto = photos[nextIndex];
+
   const next = () => setCurrent((index) => wrapIndex(index + 1));
   const previous = () => setCurrent((index) => wrapIndex(index - 1));
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { rootMargin: '100px 0px', threshold: 0.01 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || !pageVisible || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(next, 5200);
+    return () => window.clearInterval(timer);
+  }, [isVisible, pageVisible]);
+
   return (
     <section
+      ref={sectionRef}
       id="galeria"
       className="gallery-section relative isolate overflow-hidden py-20 md:py-28"
       aria-roledescription="carrossel"
@@ -50,37 +80,31 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="gallery-carousel">
-          <div
-            className="gallery-carousel-stage"
-            onTouchStart={(event) => { touchStartX.current = event.touches[0]?.clientX ?? null; }}
-            onTouchEnd={(event) => {
-              if (touchStartX.current === null) return;
-              const distance = event.changedTouches[0].clientX - touchStartX.current;
-              if (Math.abs(distance) > 45) (distance > 0 ? previous : next)();
-              touchStartX.current = null;
-            }}
-          >
-            <div className="gallery-carousel-frame" aria-live="polite">
-              <div className="gallery-carousel-backdrop" style={{ backgroundImage: `url(${currentPhoto.src})` }} aria-hidden="true" />
-              <img
-                key={currentPhoto.src}
-                className="gallery-carousel-image"
-                src={currentPhoto.src}
-                alt={currentPhoto.alt}
-                loading={current === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchPriority={current === 0 ? 'high' : 'auto'}
-              />
-              <button className="gallery-carousel-arrow gallery-carousel-prev" type="button" onClick={previous} aria-label="Foto anterior">
-                <ArrowLeft size={19} />
-              </button>
-              <button className="gallery-carousel-arrow gallery-carousel-next" type="button" onClick={next} aria-label="Próxima foto">
-                <ArrowRight size={19} />
-              </button>
-            </div>
-          </div>
+        <div
+          className="gallery-carousel"
+          onTouchStart={(event) => { touchStartX.current = event.touches[0]?.clientX ?? null; }}
+          onTouchEnd={(event) => {
+            if (touchStartX.current === null) return;
+            const distance = event.changedTouches[0].clientX - touchStartX.current;
+            if (Math.abs(distance) > 45) (distance > 0 ? previous : next)();
+            touchStartX.current = null;
+          }}
+        >
+          <div className="gallery-carousel-stage" aria-live="polite">
+            <button className="gallery-carousel-card gallery-carousel-card-prev" type="button" onClick={previous} aria-label={`Mostrar foto anterior: ${previousPhoto.alt}`}>
+              <img src={previousPhoto.src} alt="" loading="lazy" decoding="async" />
+            </button>
 
+            <div className="gallery-carousel-card gallery-carousel-card-current">
+              <img key={currentPhoto.src} src={currentPhoto.src} alt={currentPhoto.alt} loading={current === 0 ? 'eager' : 'lazy'} decoding="async" fetchPriority={current === 0 ? 'high' : 'auto'} />
+              <button className="gallery-carousel-arrow gallery-carousel-prev" type="button" onClick={previous} aria-label="Foto anterior"><ArrowLeft size={19} /></button>
+              <button className="gallery-carousel-arrow gallery-carousel-next" type="button" onClick={next} aria-label="Próxima foto"><ArrowRight size={19} /></button>
+            </div>
+
+            <button className="gallery-carousel-card gallery-carousel-card-next" type="button" onClick={next} aria-label={`Mostrar próxima foto: ${nextPhoto.alt}`}>
+              <img src={nextPhoto.src} alt="" loading="lazy" decoding="async" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
