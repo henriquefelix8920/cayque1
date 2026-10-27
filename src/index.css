@@ -89,3 +89,35 @@
 .animated-title-line > span { will-change: auto; }
 @media (max-width: 760px) { .gallery-glow { filter: blur(64px); opacity: .14; } .grain-overlay { opacity: .014; background-size: 7px 7px; } .living-cta { box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 0 18px rgba(255,45,123,.32), 0 10px 28px rgba(255,45,123,.14); } .living-cta, .living-cta-shine { animation-duration: 4.2s, 7s, 5.5s; } }
 @media (prefers-reduced-motion: reduce) { .hero video { display: none; } }
+
+
+/* Comunidade social — ponte cinematográfica entre prova social e descoberta. */
+.social-platforms { isolation: isolate; perspective: 1400px; }
+.social-platforms::before { content: ''; position: absolute; inset: 12% 8% 0; z-index: -2; background: radial-gradient(ellipse at 50% 40%, rgba(168,85,247,.14), transparent 52%), linear-gradient(180deg, transparent, rgba(18,12,28,.42)); pointer-events: none; }
+.social-platform-orbit { position: absolute; z-index: -1; top: 23%; left: 50%; width: clamp(18rem, 42vw, 38rem); height: clamp(18rem, 42vw, 38rem); border: 1px solid rgba(255,255,255,.08); border-radius: 50%; opacity: .72; transform: translateX(-50%) rotate(-16deg); pointer-events: none; }
+.social-platform-orbit::before, .social-platform-orbit::after { content: ''; position: absolute; border-radius: 50%; filter: blur(2px); }
+.social-platform-orbit::before { inset: 12%; border: 1px solid rgba(255,45,123,.2); transform: rotate(54deg) scaleX(.42); }
+.social-platform-orbit::after { top: 13%; right: 12%; width: .45rem; height: .45rem; background: var(--color-brand-pink); box-shadow: 0 0 22px 6px rgba(255,45,123,.55); }
+.social-platform-heading { position: relative; z-index: 1; }
+.social-platform-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.4rem); perspective: 1200px; }
+.social-platform-card { position: relative; display: flex; min-height: 25rem; overflow: hidden; align-items: flex-end; gap: 1.5rem; padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid rgba(255,255,255,.16); border-radius: 1.25rem; color: white; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.018) 62%, rgba(8,6,12,.22)); box-shadow: 0 28px 70px rgba(0,0,0,.26), inset 0 1px rgba(255,255,255,.12); transform-style: preserve-3d; transform: translateZ(0); transition: border-color .35s ease, box-shadow .35s ease; }
+.social-platform-card::before { content: ''; position: absolute; inset: 1px; border-radius: inherit; background: linear-gradient(125deg, rgba(255,255,255,.12), transparent 34%, transparent 72%, rgba(255,255,255,.05)); opacity: .75; pointer-events: none; }
+.social-platform-card:hover, .social-platform-card:focus-visible { border-color: rgba(255,45,123,.62); box-shadow: 0 34px 90px rgba(0,0,0,.36), 0 0 42px rgba(255,45,123,.12), inset 0 1px rgba(255,255,255,.18); }
+.social-platform-card-youtube:hover, .social-platform-card-youtube:focus-visible { border-color: rgba(255,0,51,.58); box-shadow: 0 34px 90px rgba(0,0,0,.36), 0 0 42px rgba(255,0,51,.13), inset 0 1px rgba(255,255,255,.18); }
+.social-platform-card-glow { position: absolute; z-index: -1; width: 14rem; height: 14rem; right: -3rem; bottom: -5rem; border-radius: 50%; filter: blur(35px); background: rgba(255,45,123,.24); opacity: .58; transition: transform .7s ease, opacity .7s ease; }
+.social-platform-card-youtube .social-platform-card-glow { background: rgba(255,0,51,.2); }
+.social-platform-card:hover .social-platform-card-glow, .social-platform-card:focus-visible .social-platform-card-glow { opacity: .9; transform: scale(1.35); }
+.social-platform-logo-wrap { position: relative; z-index: 1; display: grid; flex: 0 0 clamp(5.2rem, 10vw, 8rem); place-items: center; width: clamp(5.2rem, 10vw, 8rem); height: clamp(5.2rem, 10vw, 8rem); border: 1px solid rgba(255,255,255,.2); border-radius: 1.25rem; background: rgba(8,6,12,.44); box-shadow: 0 20px 40px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.18); transform: translateZ(42px) rotate(-5deg); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.social-platform-card:hover .social-platform-logo-wrap, .social-platform-card:focus-visible .social-platform-logo-wrap { transform: translateZ(68px) rotate(0deg) scale(1.06); }
+.social-platform-logo { width: 70%; height: 70%; display: block; }
+.social-platform-logo-youtube { width: 78%; }
+.social-platform-copy { position: relative; z-index: 1; display: flex; min-width: 0; flex-direction: column; transform: translateZ(30px); }
+.social-platform-eyebrow { color: rgba(255,255,255,.5); font-family: var(--font-mono); font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; }
+.social-platform-copy strong { margin-top: .45rem; font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.5rem); letter-spacing: -.06em; }
+.social-platform-description { max-width: 21rem; margin-top: .65rem; color: rgba(255,255,255,.62); font-size: .88rem; line-height: 1.55; }
+.social-platform-link { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1.25rem; color: rgba(255,255,255,.84); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+.social-platform-link svg { transition: transform .25s ease; }
+.social-platform-card:hover .social-platform-link svg, .social-platform-card:focus-visible .social-platform-link svg { transform: translate(3px, -3px); }
+@media (max-width: 760px) { .social-platform-grid { grid-template-columns: 1fr; } .social-platform-card { min-height: 18rem; } .social-platform-orbit { top: 29%; } }
+@media (max-width: 480px) { .social-platform-card { min-height: 16rem; gap: 1rem; padding: 1.25rem; } .social-platform-logo-wrap { flex-basis: 4.6rem; width: 4.6rem; height: 4.6rem; border-radius: .9rem; } .social-platform-description { font-size: .8rem; } .social-platform-link { font-size: .5rem; } }
+@media (prefers-reduced-motion: reduce) { .social-platform-card, .social-platform-logo-wrap, .social-platform-card-glow, .social-platform-link svg { transition: none; } .social-platform-orbit { transform: translateX(-50%); } }

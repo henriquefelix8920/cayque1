@@ -6,6 +6,7 @@ import About from './components/About';
 import Method from './components/Method';
 import Course from './components/Course';
 import Testimonials from './components/Testimonials';
+import SocialPlatforms from './components/SocialPlatforms';
 import Gallery from './components/Gallery';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
@@ -39,6 +40,7 @@ function App() {
       <Method />
       <Course />
       <Testimonials />
+      <SocialPlatforms />
       <Gallery />
       <CTA />
       <Footer />
