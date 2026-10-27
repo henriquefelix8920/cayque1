@@ -94,3 +94,19 @@
 @keyframes gallery-image-in { from { opacity: .4; transform: scale(1.01); } to { opacity: 1; transform: scale(1); } }
 @media (max-width: 760px) { .gallery-carousel-stage { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .65rem; } .gallery-carousel-frame { grid-column: 1 / -1; grid-row: 1; aspect-ratio: 16 / 9; } .gallery-carousel-preview { grid-row: 2; aspect-ratio: 16 / 7; } .gallery-carousel-preview-prev { grid-column: 1; } .gallery-carousel-preview-next { grid-column: 2; } .gallery-carousel-controls { grid-template-columns: 1fr auto; gap: .7rem; } .gallery-carousel-dots { grid-column: 1 / -1; grid-row: 1; gap: .4rem; } .gallery-carousel-timeline { grid-column: 1; grid-row: 2; } .gallery-carousel-play { grid-column: 2; grid-row: 2; } .gallery-carousel-dot { width: .38rem; height: .38rem; } .gallery-carousel-dot.is-active { width: 1.2rem; } }
 @media (prefers-reduced-motion: reduce) { .gallery-carousel-image { animation: none; } .gallery-carousel-preview, .gallery-carousel-arrow, .gallery-carousel-timeline span { transition: none; } }
+
+
+/* Performance tuning: preserve cinematic motion while avoiding unnecessary rendering work. */
+.animated-title-line > span { will-change: auto; }
+.gallery-carousel-backdrop { contain: paint; }
+@media (max-width: 760px) {
+  .gallery-carousel-backdrop { filter: blur(12px) saturate(.8); opacity: .22; }
+  .gallery-glow { filter: blur(64px); opacity: .14; }
+  .grain-overlay { opacity: .014; background-size: 7px 7px; }
+  .living-cta { box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 0 18px rgba(255,45,123,.32), 0 10px 28px rgba(255,45,123,.14); }
+  .living-cta, .living-cta-shine { animation-duration: 4.2s, 7s, 5.5s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero video { display: none; }
+  .gallery-carousel-backdrop { filter: none; }
+}

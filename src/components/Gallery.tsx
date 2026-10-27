@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Camera, Pause, Play } from 'lucide-react';
 
 const photos = [
@@ -18,6 +18,9 @@ const wrapIndex = (index: number) => (index + photos.length) % photos.length;
 export default function Gallery() {
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const previousIndex = wrapIndex(current - 1);
   const nextIndex = wrapIndex(current + 1);
@@ -31,13 +34,31 @@ export default function Gallery() {
   const previous = () => setCurrent((index) => wrapIndex(index - 1));
 
   useEffect(() => {
-    if (!playing) return;
-    const timer = window.setInterval(next, 5200);
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, { rootMargin: '100px 0px', threshold: 0.01 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!playing || !isVisible || !pageVisible || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(() => setCurrent((index) => wrapIndex(index + 1)), 5200);
     return () => window.clearInterval(timer);
-  }, [playing]);
+  }, [playing, isVisible, pageVisible]);
 
   return (
     <section
+      ref={sectionRef}
       id="galeria"
       className="gallery-section relative isolate overflow-hidden py-20 md:py-28"
       aria-roledescription="carrossel"
