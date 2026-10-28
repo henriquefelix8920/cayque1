@@ -1,111 +1,182 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Quote } from 'lucide-react';
-
-/* ═══════════════════════════════════════════
-   🎬 DEPOIMENTOS — A Comunidade
-   "Quem já tá tocando diferente"
-   
-   Depoimentos em formato cinematográfico,
-   como citações de um documentário.
-   ═══════════════════════════════════════════ */
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Lucas M.',
-    role: 'Guitarrista — Banda de Piseiro',
-    text: 'Eu já tocava há anos, mas nunca entendi de verdade como a levada funcionava. Com o Cayque, pela primeira vez senti que minha mão direita tinha propósito.',
+    src: '/assets/depo1.webp',
+    width: 828,
+    height: 1792,
+    alt: 'Comentário de Simon: está aprendendo com Cayque e se identifica com sua visão da música como trabalho.',
   },
   {
-    name: 'Rafael S.',
-    role: 'Músico profissional',
-    text: 'A diferença entre copiar e entender é absurda. Agora eu consigo adaptar qualquer música pro piseiro sem depender de tablatura.',
+    src: '/assets/depo2.webp',
+    width: 828,
+    height: 283,
+    alt: 'Mensagem de um músico que admira Cayque e se inspira nele para tocar.',
   },
   {
-    name: 'Thiago R.',
-    role: 'Guitarrista iniciante',
-    text: 'Comecei do zero e em poucas semanas já estava tocando com a banda. O método é direto, sem enrolação, e funciona.',
+    src: '/assets/depo3.webp',
+    width: 828,
+    height: 1187,
+    alt: 'Mensagem sobre como os conselhos de Cayque ajudaram a repensar oportunidades e relações no mundo da música.',
   },
   {
-    name: 'Diego A.',
-    role: 'Instrumentista — Forró/Piseiro',
-    text: 'O estudo de timbres mudou meu som completamente. Parei de soar genérico e agora tenho identidade no instrumento.',
+    src: '/assets/depo4.webp',
+    width: 828,
+    height: 358,
+    alt: 'Comentário de Albari: Isso me abriu a mente, obrigado amigo.',
+  },
+  {
+    src: '/assets/depo5.webp',
+    width: 828,
+    height: 514,
+    alt: 'Relato de quem não sabia tocar piseiro e conta que Cayque fez diferença em sua trajetória.',
+  },
+  {
+    src: '/assets/depo6.webp',
+    width: 828,
+    height: 502,
+    alt: 'Mensagem agradecendo pelas bases e pelas dicas que trazem uma perspectiva melhor sobre a música.',
+  },
+  {
+    src: '/assets/depo7.webp',
+    width: 828,
+    height: 918,
+    alt: 'Relato de um aluno sobre estudar piseiro, perceber a própria evolução e receber elogios do cantor com quem trabalha.',
+  },
+  {
+    src: '/assets/depo8.webp',
+    width: 828,
+    height: 843,
+    alt: 'Relato de um comprador elogiando o curso, a facilidade de aprendizado e a disposição de Cayque para ensinar e dar atenção.',
   },
 ];
 
-const Testimonials = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+type Testimonial = (typeof testimonials)[number];
+
+function PrintSequence({ images, duplicate = false }: { images: Testimonial[]; duplicate?: boolean }) {
+  return (
+    <ul className="testimonial-ribbon-sequence" aria-hidden={duplicate ? true : undefined}>
+      {images.map((image) => {
+        const print = (
+          <img
+            src={image.src}
+            alt={duplicate ? '' : image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+          />
+        );
+
+        return (
+          <li
+            key={image.src}
+            className="testimonial-ribbon-print"
+            style={{ '--testimonial-ratio': image.width / image.height } as CSSProperties}
+          >
+            {duplicate ? (
+              <span className="testimonial-print-surface">{print}</span>
+            ) : (
+              <a
+                className="testimonial-print-surface"
+                href={image.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir depoimento em tamanho original"
+                onFocus={(event) => event.currentTarget.scrollIntoView({
+                  behavior: 'instant',
+                  block: 'nearest',
+                  inline: 'center',
+                })}
+              >
+                {print}
+              </a>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { margin: '150px' });
+  const reducedMotion = useReducedMotion();
+  const [pageVisible, setPageVisible] = useState(true);
+  const rows = [testimonials.slice(0, 4), testimonials.slice(4)];
+
+  useEffect(() => {
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
 
   return (
     <section
-      id="depoimentos"
       ref={sectionRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
+      id="depoimentos"
+      className="testimonial-ribbons relative isolate overflow-hidden py-24 lg:py-32"
+      aria-labelledby="testimonials-title"
+      data-running={isInView && pageVisible && !reducedMotion ? 'true' : 'false'}
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/50 to-transparent pointer-events-none" />
+      <div className="testimonial-ribbons-light" aria-hidden="true" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Título */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 lg:mb-24"
-        >
-          <span className="font-mono text-xs text-brand-pink uppercase tracking-[0.3em] mb-4 block">
-            A Comunidade
-          </span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
-            Quem já tá tocando<br />
-            <span className="text-brand-gray/60">diferente.</span>
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: reducedMotion ? 0 : 0.8 }}
+        className="relative mx-auto mb-12 max-w-7xl px-6 lg:mb-16 lg:px-10"
+      >
+        <span className="eyebrow">Ato IV — Quem vive o som</span>
+        <div className="mt-5 flex flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
+          <h2
+            id="testimonials-title"
+            className="max-w-3xl font-display text-4xl font-extrabold leading-[.98] tracking-[-.06em] md:text-6xl lg:text-7xl"
+          >
+            O som é dele.<br />
+            <span className="text-brand-pink text-glow-pink">A experiência é de quem vive.</span>
           </h2>
-        </motion.div>
-
-        {/* Grid de depoimentos */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {testimonials.map((testimonial, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="relative p-8 lg:p-10 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:border-brand-purple/20 transition-all duration-500 group"
-            >
-              {/* Quote icon */}
-              <Quote
-                size={32}
-                className="text-brand-purple/20 mb-4 group-hover:text-brand-purple/40 transition-colors"
-              />
-
-              {/* Texto */}
-              <p className="text-brand-white/80 text-lg leading-relaxed mb-6 font-light">
-                "{testimonial.text}"
-              </p>
-
-              {/* Autor */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center">
-                  <span className="font-display font-semibold text-sm text-white">
-                    {testimonial.name[0]}
-                  </span>
-                </div>
-                <div>
-                  <div className="font-display font-medium text-sm text-brand-white">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-xs text-brand-gray">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <p className="max-w-sm text-base leading-7 text-white/60">
+            Do conteúdo às aulas, a conexão vai além da guitarra. Veja o que músicos,
+            seguidores e alunos compartilham sobre Cayque e sua forma de ensinar.
+          </p>
         </div>
+      </motion.div>
+
+      <div className="testimonial-ribbons-reel">
+        {rows.map((images, index) => (
+          <div
+            key={index}
+            className={`testimonial-ribbon testimonial-ribbon-${index === 0 ? 'right' : 'left'}`}
+            role="group"
+            aria-label={`Depoimentos: faixa ${index + 1}. Selecione um print para ler em tamanho original.`}
+          >
+            <div className="testimonial-ribbon-track">
+              <PrintSequence images={images} />
+              <PrintSequence images={images} duplicate />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="relative mx-auto mt-12 max-w-3xl px-6 text-center md:mt-16">
+        <p className="font-display text-xl font-semibold tracking-[-.035em] text-white/90 md:text-2xl">
+          A próxima história com a guitarra pode ser a sua.
+        </p>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/55 md:text-base">
+          Transforme a inspiração em prática. No Ritmos de Piseiro, estude as levadas,
+          os timbres e as variações para construir o seu próprio som.
+        </p>
+        <a href="#curso" className="testimonial-course-link">
+          Conheça o Ritmos de Piseiro <ArrowUpRight size={17} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

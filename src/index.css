@@ -158,3 +158,124 @@
 @media (prefers-reduced-motion: reduce) { .floating-course-button { animation: none; } .floating-course-button-ring { animation: none; } }
 
 .floating-course-button-core svg:first-child { color: white; animation: none; }
+
+
+/* Ato IV — prints reais em duas faixas contínuas, sem cards ou molduras. */
+.testimonial-ribbons {
+  --testimonial-gap: clamp(1.25rem, 3vw, 2.75rem);
+  --testimonial-row-height: clamp(22rem, 34vw, 28rem);
+  scroll-margin-top: 6rem;
+}
+.testimonial-ribbons-light {
+  position: absolute;
+  z-index: -1;
+  inset: 12% 0;
+  background: radial-gradient(ellipse at 22% 40%, rgba(107, 33, 168, .12), transparent 55%),
+    radial-gradient(ellipse at 82% 72%, rgba(255, 45, 123, .07), transparent 50%);
+  pointer-events: none;
+}
+.testimonial-ribbons-reel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+.testimonial-ribbon {
+  overflow: hidden;
+  padding-block: .5rem;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.testimonial-ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: testimonial-ribbon-travel 68s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+.testimonial-ribbon-right .testimonial-ribbon-track {
+  animation-direction: reverse;
+}
+.testimonial-ribbon-left .testimonial-ribbon-track {
+  animation-duration: 72s;
+}
+.testimonial-ribbons[data-running='true'] .testimonial-ribbon-track {
+  animation-play-state: running;
+}
+/* Leitura por teclado sem controles adicionais ou foco em cópias decorativas. */
+.testimonial-ribbon:focus-within {
+  overflow-x: auto;
+  mask-image: none;
+}
+.testimonial-ribbon:focus-within .testimonial-ribbon-track {
+  animation: none;
+  transform: none;
+}
+.testimonial-ribbon:focus-within .testimonial-ribbon-sequence[aria-hidden='true'] {
+  display: none;
+}
+.testimonial-ribbon-sequence {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--testimonial-gap);
+  min-width: 100vw;
+  margin: 0;
+  padding: 0 var(--testimonial-gap) 0 0;
+  list-style: none;
+}
+.testimonial-ribbon-print {
+  flex: 0 0 auto;
+  width: min(calc(var(--testimonial-row-height) * var(--testimonial-ratio)), 38rem, 86vw);
+  height: var(--testimonial-row-height);
+}
+.testimonial-print-surface {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.testimonial-ribbon-print img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.testimonial-course-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  padding-block: .4rem;
+  border-bottom: 1px solid rgba(255, 45, 123, .6);
+  color: var(--color-brand-pink-light);
+  font-family: var(--font-display);
+  font-size: .85rem;
+  font-weight: 600;
+  transition: color .25s ease;
+}
+.testimonial-course-link svg { transition: transform .25s ease; }
+.testimonial-course-link:hover, .testimonial-course-link:focus-visible { color: white; }
+.testimonial-course-link:hover svg, .testimonial-course-link:focus-visible svg { transform: translate(3px, -3px); }
+@keyframes testimonial-ribbon-travel {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (max-width: 760px) {
+  .testimonial-ribbons { --testimonial-row-height: clamp(20rem, 95vw, 26rem); }
+  .testimonial-ribbon { mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); }
+  .testimonial-ribbon-track { animation-duration: 58s; }
+  .testimonial-ribbon-left .testimonial-ribbon-track { animation-duration: 62s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-ribbon { overflow-x: auto; mask-image: none; }
+  .testimonial-ribbon-track { animation: none !important; transform: none; will-change: auto; }
+  .testimonial-ribbon-sequence { min-width: 0; padding-inline: 1.5rem; }
+  .testimonial-ribbon-sequence[aria-hidden='true'] { display: none; }
+  .testimonial-course-link, .testimonial-course-link svg { transition: none; }
+}
