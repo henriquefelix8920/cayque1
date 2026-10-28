@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { gsap } from 'gsap';
 
 const InstagramMark = () => (
@@ -31,7 +30,8 @@ const platforms = [
     label: 'Instagram',
     eyebrow: 'Bastidores & rotina',
     copy: 'Acompanhe os bastidores, os estudos e os momentos que fazem o som acontecer.',
-    hint: 'em breve · link do Instagram',
+    // Insira aqui a URL real do perfil quando ela estiver disponível.
+    href: '',
     mark: <InstagramMark />,
   },
   {
@@ -39,14 +39,15 @@ const platforms = [
     label: 'YouTube',
     eyebrow: 'Aulas & performance',
     copy: 'Veja as levadas em ação, aprenda com vídeos diretos e escute o piseiro por outro ângulo.',
-    hint: 'em breve · link do YouTube',
+    // Insira aqui a URL real do canal quando ela estiver disponível.
+    href: '',
     mark: <YouTubeMark />,
   },
 ];
 
 export default function SocialPlatforms() {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLAnchorElement[]>([]);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
   const orbRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -114,23 +115,31 @@ export default function SocialPlatforms() {
 
         <div className="social-platform-grid mt-14 md:mt-20">
           {platforms.map((platform, index) => (
-            <a
+            <div
               key={platform.key}
               ref={(element) => { if (element) cardsRef.current[index] = element; }}
-              href="#"
-              onClick={(event) => event.preventDefault()}
               className={`social-platform-card social-platform-card-${platform.key}`}
-              aria-label={`Adicionar link do ${platform.label}`}
             >
               <span className="social-platform-card-glow" aria-hidden="true" />
-              <span className="social-platform-logo-wrap">{platform.mark}</span>
+              <a
+                className="social-platform-logo-wrap"
+                href={platform.href || '#'}
+                {...(platform.href && platform.href !== '#'
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
+                onClick={(event) => {
+                  if (!platform.href || platform.href === '#') event.preventDefault();
+                }}
+                aria-label={platform.label}
+              >
+                {platform.mark}
+              </a>
               <span className="social-platform-copy">
                 <span className="social-platform-eyebrow">{platform.eyebrow}</span>
                 <strong>{platform.label}</strong>
                 <span className="social-platform-description">{platform.copy}</span>
-                <span className="social-platform-link">{platform.hint}<ArrowUpRight size={16} /></span>
               </span>
-            </a>
+            </div>
           ))}
         </div>
       </div>

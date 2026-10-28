@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const photos = [
   { src: '/assets/gallery/gallery-01.avif', alt: 'Cayque Gomes no palco, retrato 1' },
@@ -97,8 +96,6 @@ export default function Gallery() {
 
             <div className="gallery-carousel-card gallery-carousel-card-current">
               <img key={currentPhoto.src} src={currentPhoto.src} alt={currentPhoto.alt} loading={current === 0 ? 'eager' : 'lazy'} decoding="async" fetchPriority={current === 0 ? 'high' : 'auto'} />
-              <button className="gallery-carousel-arrow gallery-carousel-prev" type="button" onClick={previous} aria-label="Foto anterior"><ArrowLeft size={19} /></button>
-              <button className="gallery-carousel-arrow gallery-carousel-next" type="button" onClick={next} aria-label="Próxima foto"><ArrowRight size={19} /></button>
             </div>
 
             <button className="gallery-carousel-card gallery-carousel-card-next" type="button" onClick={next} aria-label={`Mostrar próxima foto: ${nextPhoto.alt}`}>
