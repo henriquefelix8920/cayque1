@@ -48,7 +48,7 @@ export default function Gallery() {
 
   useEffect(() => {
     if (!isVisible || !pageVisible || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const timer = window.setInterval(next, 5200);
+    const timer = window.setInterval(next, 3200);
     return () => window.clearInterval(timer);
   }, [isVisible, pageVisible]);
 
@@ -70,7 +70,7 @@ export default function Gallery() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-10 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end">
           <div>
-            <span className="eyebrow">Ato IV — Fora do roteiro</span>
+            <span className="eyebrow">Ato VI — Fora do roteiro</span>
             <h2 className="mt-5 max-w-3xl font-display text-4xl font-extrabold leading-[.95] tracking-[-.065em] md:text-7xl">
               A música também <span className="text-brand-pink text-glow-pink">é imagem.</span>
             </h2>

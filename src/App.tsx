@@ -11,6 +11,7 @@ import Gallery from './components/Gallery';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import GrainOverlay from './components/GrainOverlay';
+import FloatingCourseButton from './components/FloatingCourseButton';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -44,6 +45,7 @@ function App() {
       <Gallery />
       <CTA />
       <Footer />
+      <FloatingCourseButton />
     </div>
   );
 }
