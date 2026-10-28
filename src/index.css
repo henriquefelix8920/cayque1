@@ -142,3 +142,19 @@
 @keyframes floating-cta-spark { 0%, 100% { transform: rotate(0) scale(1); } 50% { transform: rotate(14deg) scale(1.18); } }
 @media (max-width: 560px) { .floating-course-button { right: .85rem; bottom: .85rem; } .floating-course-button-core { min-height: 3rem; padding: .7rem .85rem; font-size: .65rem; } }
 @media (prefers-reduced-motion: reduce) { .floating-course-button, .floating-course-button-ring, .floating-course-button-shine::after, .floating-course-button-core svg:first-child { animation: none; } .floating-course-button { transition: none; } }
+
+
+/* WhatsApp flutuante — círculo reconhecível, salto e brilho simultâneos. */
+.floating-course-button { width: 4.25rem; height: 4.25rem; min-height: 0; align-items: center; justify-content: center; padding: .2rem; background: #25d366; box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 0 22px rgba(37,211,102,.72), 0 14px 34px rgba(0,0,0,.45); animation: whatsapp-bounce 1.65s ease-in-out infinite, whatsapp-glow 2s ease-in-out infinite; }
+.floating-course-button:hover, .floating-course-button:focus-visible { transform: translateY(-8px) scale(1.08); box-shadow: 0 0 0 1px rgba(255,255,255,.55) inset, 0 0 42px rgba(37,211,102,.95), 0 18px 42px rgba(0,0,0,.5); }
+.floating-course-button-core { display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; padding: 0; border-radius: 50%; background: #25d366; }
+.floating-whatsapp-logo { display: block; width: 2.45rem; height: 2.45rem; color: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,.22)); }
+.floating-course-button-ring { inset: -6px; border-color: rgba(37,211,102,.72); animation: whatsapp-ring 2.2s ease-out infinite; }
+.floating-course-button-shine { inset: .2rem; border-radius: 50%; }
+@keyframes whatsapp-bounce { 0%, 100% { translate: 0 0; } 18% { translate: 0 -9px; } 32% { translate: 0 0; } 45% { translate: 0 -4px; } 58% { translate: 0 0; } }
+@keyframes whatsapp-glow { 0%, 100% { box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 0 20px rgba(37,211,102,.58), 0 14px 34px rgba(0,0,0,.45); } 50% { box-shadow: 0 0 0 1px rgba(255,255,255,.48) inset, 0 0 40px rgba(37,211,102,.98), 0 16px 38px rgba(0,0,0,.48); } }
+@keyframes whatsapp-ring { 0% { transform: scale(.92); opacity: .8; } 78%, 100% { transform: scale(1.28); opacity: 0; } }
+@media (max-width: 560px) { .floating-course-button { right: .85rem; bottom: .85rem; width: 3.8rem; height: 3.8rem; } .floating-whatsapp-logo { width: 2.2rem; height: 2.2rem; } }
+@media (prefers-reduced-motion: reduce) { .floating-course-button { animation: none; } .floating-course-button-ring { animation: none; } }
+
+.floating-course-button-core svg:first-child { color: white; animation: none; }
