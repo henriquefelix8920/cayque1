@@ -85,8 +85,9 @@
 @media (max-width: 760px) { .gallery-carousel-stage { grid-template-columns: minmax(3.8rem, 18%) minmax(0, 1fr) minmax(3.8rem, 18%); gap: .35rem; min-height: 26rem; perspective: 900px; } .gallery-carousel-card-prev, .gallery-carousel-card-next { transform: rotateY(10deg) scale(.9); } .gallery-carousel-card-next { transform: rotateY(-10deg) scale(.9); } .gallery-carousel-card-current { min-height: 26rem; transform: translateZ(18px) scale(1.01); } .gallery-carousel-arrow { width: 2.6rem; height: 2.6rem; } }
 @media (prefers-reduced-motion: reduce) { .gallery-carousel-card, .gallery-carousel-card img, .gallery-carousel-arrow { transition: none; } .gallery-carousel-card-current img { animation: none; } }
 
-/* Performance tuning: preserve cinematic motion while avoiding unnecessary rendering work. */
-.animated-title-line > span { will-change: auto; }
+/* Performance tuning: keep animated title layers on the compositor while they enter. */
+.animated-title-line > span,
+.hero h1 { will-change: transform; backface-visibility: hidden; }
 @media (max-width: 760px) { .gallery-glow { filter: blur(64px); opacity: .14; } .grain-overlay { opacity: .014; background-size: 7px 7px; } .living-cta { box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 0 18px rgba(255,45,123,.32), 0 10px 28px rgba(255,45,123,.14); } .living-cta, .living-cta-shine { animation-duration: 4.2s, 7s, 5.5s; } }
 @media (prefers-reduced-motion: reduce) { .hero video { display: none; } }
 
