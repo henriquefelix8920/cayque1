@@ -170,11 +170,11 @@ export default function Testimonials() {
           A próxima história com a guitarra pode ser a sua.
         </p>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/55 md:text-base">
-          Transforme a inspiração em prática. No Ritmos de Piseiro, estude as levadas,
+          Transforme a inspiração em prática. Na Comunidade dos ritmos, estude as levadas,
           os timbres e as variações para construir o seu próprio som.
         </p>
         <a href="#curso" className="testimonial-course-link">
-          Conheça o Ritmos de Piseiro <ArrowUpRight size={17} aria-hidden="true" />
+          Conheça a Comunidade dos ritmos <ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </div>
     </section>

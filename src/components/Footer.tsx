@@ -33,7 +33,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-sm text-brand-gray leading-relaxed max-w-xs">
-              Guitarra do piseiro sem mistério. Do palco pro seu instrumento, 
+              A Comunidade dos ritmos, por Cayque Gomes. Guitarra do piseiro e do arrocha,
               com a prática real de quem vive a música.
             </p>
           </div>
