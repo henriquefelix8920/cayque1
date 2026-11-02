@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Guitar, Check } from 'lucide-react';
 
 const CTA = () => <section id="oferta" className="relative overflow-hidden py-24 lg:py-36">
-  <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_35%,rgba(124,58,237,.3),transparent_55%),linear-gradient(145deg,#08060c,#10091a_55%,#08060c)]"/>
+  <div className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "linear-gradient(180deg, rgba(8,6,12,.88) 0%, rgba(8,6,12,.94) 58%, rgba(8,6,12,.98) 100%), linear-gradient(90deg, rgba(8,6,12,.75), rgba(16,9,26,.72)), url('/assets/foto3.webp')", backgroundPosition: "center 38%", backgroundSize: "cover" }} aria-hidden="true"/>
   <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-violet-300/50 to-transparent"/>
   <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .65 }} className="mx-auto max-w-4xl px-6 text-center lg:px-10">
     <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-violet-300/30 bg-violet-400/10"><Guitar size={27} className="text-violet-200"/></div>
