@@ -1,40 +1,33 @@
-import { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { Guitar, Mic2, Headphones, Users, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Guitar, Heart, Music2 } from 'lucide-react';
 
-const scenes = [
-  { icon: Guitar, title: 'No palco', description: 'A primeira levada nasce onde a música precisa acontecer de verdade.' },
-  { icon: Mic2, title: 'No ensaio', description: 'Tempo, pressão e presença para tocar junto sem perder o pulso.' },
-  { icon: Headphones, title: 'No estúdio', description: 'Timbre, detalhe e intenção até o som chegar com personalidade.' },
-  { icon: Users, title: 'Na comunidade', description: 'Prática compartilhada para transformar segurança em linguagem própria.' },
-];
-
-const About = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['-4%', '4%']);
-  const sceneY = [
-    useTransform(scrollYProgress, [0, 1], [8, -6]),
-    useTransform(scrollYProgress, [0, 1], [-5, 8]),
-    useTransform(scrollYProgress, [0, 1], [7, -5]),
-    useTransform(scrollYProgress, [0, 1], [-6, 7]),
-  ];
-
-  return <section id="sobre" ref={sectionRef} className="about-cinema relative isolate overflow-hidden py-24 lg:py-36">
-    <motion.div style={{ y: imageY, backgroundImage: "url('/assets/foto1.webp')" }} className="absolute inset-[-5%] -z-20 bg-cover bg-center" aria-hidden="true" />
-    <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,6,12,.98)_8%,rgba(8,6,12,.82)_44%,rgba(8,6,12,.3)_100%)]" /><div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08060c_0%,transparent_18%,rgba(8,6,12,.94)_92%,#08060c_100%)]" /><div className="about-cinema-line" aria-hidden="true" />
-    <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[.82fr_1.18fr] lg:items-center lg:px-10">
-      <motion.div initial={{ opacity: 0, x: -30 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: .8 }}>
-        <span className="eyebrow">Ato I — O músico</span>
-        <h2 className="animated-title mt-6 max-w-xl font-display text-4xl font-extrabold leading-[.92] tracking-[-.065em] md:text-6xl" aria-label="Quem coloca a mão na guitarra de verdade."><span className="animated-title-line"><motion.span initial={{ y: '110%' }} animate={isInView ? { y: 0 } : {}} transition={{ duration: .8, delay: .12, ease: [0.22, 1, 0.36, 1] }}>Quem coloca a mão</motion.span></span><span className="animated-title-line text-white/50"><motion.span initial={{ y: '110%' }} animate={isInView ? { y: 0 } : {}} transition={{ duration: .8, delay: .24, ease: [0.22, 1, 0.36, 1] }}>na guitarra de verdade.</motion.span></span></h2>
-        <div className="mt-8 max-w-xl space-y-5 text-base leading-7 text-white/70 md:text-lg"><p><strong className="text-white">Cayque Gomes</strong> aprendeu no palco — no som alto, no aperto antes do show e na pressão de acertar a levada na hora certa.</p><p>O curso leva para o ensino aquilo que nenhum tutorial genérico entrega: <span className="text-brand-pink">como a mão realmente funciona</span> quando o bumbo marca e o trio inteiro está na sua frente.</p></div>
-        <div className="mt-9 border-l border-brand-pink/70 pl-5"><p className="font-display text-xl italic text-white/90">“Eu ensino o que eu faço. Se funciona no show, funciona pra você.”</p><span className="mt-3 block text-xs uppercase tracking-[.22em] text-white/45">— Cayque Gomes</span></div>
-      </motion.div>
-
-      <div className="about-scenes"><div className="mb-7 flex items-end justify-between gap-4"><span className="eyebrow">A mão no instrumento</span><span className="hidden text-right text-[10px] uppercase tracking-[.22em] text-white/40 sm:block">é onde tudo<br />acontece</span></div><div className="scene-list">{scenes.map((scene, index) => { const Icon = scene.icon; return <motion.div key={scene.title} style={{ y: sceneY[index] }} initial={{ opacity: 0, x: 24 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: .65, delay: .2 + index * .1 }} className="scene-line group"><div className="scene-line-icon"><Icon size={20} /></div><div className="min-w-0 flex-1"><h3 className="font-display text-2xl font-bold tracking-[-.045em] text-white">{scene.title}</h3><p className="mt-1 max-w-md text-sm leading-6 text-white/55">{scene.description}</p></div><ArrowUpRight size={17} className="shrink-0 text-white/25 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-pink" /></motion.div>; })}</div></div>
-    </div>
-  </section>;
-};
-
+const About = () => <section id="historia" className="about-cinema relative isolate overflow-hidden py-24 lg:py-36">
+  <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_75%_25%,rgba(124,58,237,.2),transparent_45%),linear-gradient(145deg,#08060c,#10091a_55%,#08060c)]" />
+  <div className="absolute right-0 top-0 -z-10 h-full w-px bg-gradient-to-b from-transparent via-violet-400/40 to-transparent" />
+  <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20 lg:px-10">
+    <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .7 }}>
+      <span className="eyebrow">Antes da comunidade, a minha história</span>
+      <h2 className="mt-6 font-display text-4xl font-extrabold leading-[.94] tracking-[-.065em] md:text-6xl">Pra mim, música nunca foi só <span className="text-violet-300">tocar.</span></h2>
+      <div className="mt-8 space-y-5 text-base leading-7 text-white/70 md:text-lg">
+        <p>Eu sou <strong className="text-white">Cayque Gomes</strong>, músico, moro no interior do Rio de Janeiro e comecei minha caminhada na música aos 15 anos.</p>
+        <p>Desde o primeiro ano tocando, eu também já ensinava. Enquanto ainda dividia o tempo com a bola, descobri que gostava tanto de entender a música quanto de ajudar outras pessoas a tocar.</p>
+        <p>Com o tempo, uma coisa ficou clara: <strong className="text-white">música é para todo mundo.</strong> Você pode tocar, cantar, cantarolar ou simplesmente admirar. Cada pessoa pode fazer parte dela de um jeito.</p>
+        <p>Criei a Comunidade dos Ritmos para compartilhar o que aprendi, explicar os detalhes que muitas vezes ficam de fora e ajudar outros guitarristas a encontrarem seu próprio caminho nesses estilos.</p>
+      </div>
+    </motion.div>
+    <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .7, delay: .12 }} className="relative">
+      <div className="absolute -inset-5 -z-10 rounded-[2rem] bg-violet-600/10 blur-2xl" />
+      <div className="border border-violet-300/20 bg-[#100b19]/80 p-7 md:p-10">
+        <span className="font-mono text-xs uppercase tracking-[.24em] text-violet-300">O que me trouxe até aqui</span>
+        <div className="mt-8 space-y-7">
+          <div className="flex gap-4"><span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-violet-300/30 bg-violet-400/10 text-violet-200"><Guitar size={21}/></span><div><h3 className="font-display text-xl font-bold">Músico desde os 15</h3><p className="mt-1 text-sm leading-6 text-white/55">Anos de prática, escuta e descoberta dentro da música.</p></div></div>
+          <div className="flex gap-4"><span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-violet-300/30 bg-violet-400/10 text-violet-200"><Music2 size={21}/></span><div><h3 className="font-display text-xl font-bold">Professor desde o começo</h3><p className="mt-1 text-sm leading-6 text-white/55">Explicar o detalhe sempre fez parte da minha relação com o instrumento.</p></div></div>
+          <div className="flex gap-4"><span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-violet-300/30 bg-violet-400/10 text-violet-200"><Heart size={21}/></span><div><h3 className="font-display text-xl font-bold">Música feita para compartilhar</h3><p className="mt-1 text-sm leading-6 text-white/55">A comunidade nasceu para ninguém precisar ficar perdido nos detalhes dos ritmos.</p></div></div>
+        </div>
+        <p className="mt-9 border-t border-white/10 pt-6 font-display text-xl italic leading-7 text-white/85">“Eu quero que você faça parte de um pedaço meu na música.”</p>
+        <p className="mt-3 text-xs uppercase tracking-[.2em] text-violet-300">— Cayque Gomes</p>
+      </div>
+    </motion.div>
+  </div>
+</section>;
 export default About;
