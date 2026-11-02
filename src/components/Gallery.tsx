@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 const photos = [
-  { src: '/assets/gallery/gallery-01.avif', alt: 'Cayque Gomes no palco, retrato 1' },
   { src: '/assets/gallery/gallery-02.avif', alt: 'Cayque Gomes em um momento de performance, retrato 2' },
   { src: '/assets/gallery/gallery-03.avif', alt: 'Cayque Gomes em close, retrato 3' },
   { src: '/assets/gallery/gallery-04.avif', alt: 'Cayque Gomes nos bastidores, retrato 4' },
