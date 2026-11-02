@@ -139,12 +139,11 @@ export default function Testimonials() {
             id="testimonials-title"
             className="max-w-3xl font-display text-4xl font-extrabold leading-[.98] tracking-[-.06em] md:text-6xl lg:text-7xl"
           >
-            O som é dele.<br />
-            <span className="text-brand-pink text-glow-pink">A experiência é de quem vive.</span>
+            O que a gente aprende<br />
+            <span className="text-brand-pink text-glow-pink">também se compartilha.</span>
           </h2>
           <p className="max-w-sm text-base leading-7 text-white/60">
-            Do conteúdo às aulas, a conexão vai além da guitarra. Veja o que músicos,
-            seguidores e alunos compartilham sobre Cayque e sua forma de ensinar.
+            Estas são mensagens compartilhadas com Cayque. Elas mostram conversas, aprendizados e a relação construída em torno da música.
           </p>
         </div>
       </motion.div>
@@ -170,8 +169,7 @@ export default function Testimonials() {
           Sua caminhada também pode continuar aqui.
         </p>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/55 md:text-base">
-          Transforme a inspiração em prática. Na Comunidade dos Ritmos, estude as levadas,
-          os timbres e as variações para construir o seu próprio som.
+          Na Comunidade dos Ritmos, você encontra um espaço para aprofundar os estilos, tirar dúvidas e seguir aprendendo com mais contexto.
         </p>
         <a href="#curso" className="testimonial-course-link">
           Conheça a Comunidade dos Ritmos <ArrowUpRight size={17} aria-hidden="true" />
