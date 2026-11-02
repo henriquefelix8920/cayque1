@@ -69,13 +69,13 @@ export default function Gallery() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-10 flex flex-col justify-between gap-5 md:mb-12 md:flex-row md:items-end">
           <div>
-            <span className="eyebrow">Ato VI — Fora do roteiro</span>
+            <span className="eyebrow">Um pouco da caminhada</span>
             <h2 className="mt-5 max-w-3xl font-display text-4xl font-extrabold leading-[.95] tracking-[-.065em] md:text-7xl">
-              A música também <span className="text-brand-pink text-glow-pink">é imagem.</span>
+              Música, palco e <span className="text-brand-pink text-glow-pink">caminhada.</span>
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-6 text-white/55 md:text-base">
-            Entre o palco, os bastidores e os momentos que ficam. Um pouco do universo de Cayque, em movimento.
+            Alguns registros do universo de Cayque Gomes — porque por trás de cada ritmo existe um músico que continua aprendendo e compartilhando.
           </p>
         </div>
 
