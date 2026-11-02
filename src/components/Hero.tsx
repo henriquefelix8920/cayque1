@@ -1,74 +1,59 @@
 import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Volume2 } from 'lucide-react';
-
-const equalizerBars = [32, 54, 42, 72, 48, 84, 58, 38, 68, 50, 78, 46, 64, 36, 70, 52, 82, 44, 60, 34, 74, 48, 66, 40, 80, 56, 62, 42, 76, 50, 68, 38, 72, 46, 58, 34, 78, 52, 64, 44];
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { ArrowDown, Guitar, Users } from 'lucide-react';
 
 const Hero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -55]);
+  const contentOpacity = useTransform(scrollYProgress, [0, .8], [1, 0]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
-
+    const section = containerRef.current;
+    if (!video || !section) return;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const syncPlayback = () => {
-      const bounds = containerRef.current?.getBoundingClientRect();
-      const inViewport = Boolean(bounds && bounds.bottom > 0 && bounds.top < window.innerHeight);
-      if (reducedMotion.matches || document.hidden || !inViewport) {
-        video.pause();
-      } else {
-        void video.play().catch(() => {});
-      }
+      const rect = section.getBoundingClientRect();
+      if (reducedMotion.matches || document.hidden || rect.bottom <= 0 || rect.top >= window.innerHeight) video.pause();
+      else void video.play().catch(() => {});
     };
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) syncPlayback();
-      else video.pause();
-    }, { threshold: 0.01 });
-
-    if (containerRef.current) observer.observe(containerRef.current);
+    const observer = new IntersectionObserver(([entry]) => entry.isIntersecting ? syncPlayback() : video.pause(), { threshold: .01 });
+    observer.observe(section);
     document.addEventListener('visibilitychange', syncPlayback);
     reducedMotion.addEventListener('change', syncPlayback);
     syncPlayback();
-
-    return () => {
-      observer.disconnect();
-      document.removeEventListener('visibilitychange', syncPlayback);
-      reducedMotion.removeEventListener('change', syncPlayback);
-      video.pause();
-    };
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', syncPlayback); reducedMotion.removeEventListener('change', syncPlayback); video.pause(); };
   }, []);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -44]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.78], [1, 0]);
-  const videoScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.08]);
 
-  return (
-    <section id="inicio" ref={containerRef} className="hero relative flex min-h-[100svh] items-center justify-center overflow-hidden">
-      <motion.div style={{ scale: videoScale, backgroundImage: "url('/assets/foto1.webp')" }} className="absolute inset-0 pointer-events-none bg-cover bg-center" aria-hidden="true">
-        <video ref={videoRef} className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.webp" aria-hidden="true"><source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" /><source src="/assets/video1.mp4" type="video/mp4" /></video>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,6,12,.88)_0%,rgba(8,6,12,.46)_48%,rgba(8,6,12,.72)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,6,12,.38)_0%,transparent_40%,rgba(8,6,12,.96)_100%)]" />
-        <div className="absolute inset-0 bg-brand-pink/10 mix-blend-screen" />
+  return <section id="inicio" ref={containerRef} className="hero relative flex min-h-[100svh] items-center overflow-hidden">
+    <motion.div style={{ scale: useTransform(scrollYProgress, [0, 1], [1.02, 1.07]) }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/assets/foto1.webp')" }} />
+      <video ref={videoRef} className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.webp" aria-hidden="true">
+        <source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" />
+        <source src="/assets/video1.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,4,10,.94)_0%,rgba(5,4,10,.65)_52%,rgba(5,4,10,.38)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,4,10,.3)_0%,transparent_42%,#08060c_100%)]" />
+      <div className="absolute inset-0 bg-violet-700/10 mix-blend-screen" />
+    </motion.div>
+    <motion.div style={{ scaleX: smoothProgress }} className="absolute top-0 left-0 right-0 z-20 h-[2px] origin-left bg-gradient-to-r from-violet-700 via-fuchsia-400 to-violet-700" />
+    <motion.div style={{ opacity: contentOpacity }} className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-28 lg:px-10">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }} className="eyebrow mb-7"><span>Um lugar para quem vive a música</span></motion.div>
+      <motion.h1 style={{ y: titleY }} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .12 }} className="max-w-5xl font-display text-[clamp(3rem,9vw,8rem)] font-extrabold leading-[.88] tracking-[-.075em]">
+        Toque os ritmos<br />que fazem o Brasil<br /><span className="text-violet-300 text-glow-pink">dançar.</span>
+      </motion.h1>
+      <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .3 }} className="mt-8 max-w-2xl text-base leading-7 text-white/75 md:text-xl md:leading-8">
+        Aprenda forró, piseiro, arrocha e corinho de fogo na guitarra, com explicações detalhadas e atuais — junto de quem ensina música há mais de uma década.
+      </motion.p>
+      <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .45 }} className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <a href="#ritmos" className="living-cta living-cta-primary group"><span className="living-cta-shine" aria-hidden="true" /><span className="relative z-10 flex items-center gap-2"><Users size={18} /> Conheça a comunidade</span></a>
+        <a href="#historia" className="ghost-cta">Conheça minha história <ArrowDown size={16} /></a>
       </motion.div>
-
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"><div className="stage-light stage-light-one" /><div className="stage-light stage-light-two" /><div className="stage-grid" /></div>
-
-      <motion.div style={{ opacity: contentOpacity }} className="relative z-10 w-full max-w-7xl px-6 pt-20 lg:px-10">
-        <div className="max-w-4xl">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .2 }} className="eyebrow mb-7"><span>A Comunidade dos Ritmos</span></motion.div>
-          <motion.h1 style={{ y: titleY }} initial={{ opacity: 0, y: 42 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: .35, ease: [0.22, 1, 0.36, 1] }} className="font-display text-[clamp(3rem,9vw,8.5rem)] font-extrabold leading-[.9] tracking-[-.07em]">A Comunidade<br /><span className="text-brand-pink text-glow-pink">dos Ritmos</span></motion.h1>
-          <motion.p style={{ y: subtitleY }} initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .72 }} className="mt-8 max-w-2xl text-base leading-7 text-white/70 md:text-xl md:leading-8">Na Comunidade dos Ritmos, aprenda levadas, timbres, acordes e variações com quem vive o palco, o ensaio e o estúdio. Do jeito que a mão realmente executa.</motion.p>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: 1 }} className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"><a href="#curso" className="living-cta living-cta-primary group"><span className="living-cta-shine" aria-hidden="true" /><span className="relative z-10 flex items-center gap-2"><Volume2 size={18} /> Entrar na comunidade</span></a><a href="#metodo" className="ghost-cta">Ver o método <ChevronDown size={16} /></a></motion.div>
-        </div>
-      </motion.div>
-
-      <div className="absolute bottom-0 left-0 right-0 z-10 flex h-20 items-end justify-center gap-1 px-6 opacity-60" aria-hidden="true">{equalizerBars.map((height, index) => <span key={index} className="equalizer-bar w-[2px] rounded-full bg-gradient-to-t from-brand-pink to-brand-purple-light" style={{ height: `${height}%`, animationDelay: `${index * .06}s` }} />)}</div>
-    </section>
-  );
+      <div className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-[.16em] text-white/60"><span className="flex items-center gap-2"><Guitar size={14} className="text-violet-300" /> Para quem já toca guitarra</span><span>•</span><span>Aprendizado específico por estilo</span></div>
+    </motion.div>
+  </section>;
 };
-
 export default Hero;
