@@ -43,7 +43,7 @@ const Hero = () => {
     <motion.div style={{ opacity: contentOpacity }} className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-24 pb-28 lg:px-10">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }} className="eyebrow mb-7"><span>Um lugar para quem vive a música</span></motion.div>
       <motion.h1 style={{ y: titleY }} initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .12 }} className="max-w-5xl font-display text-[clamp(3rem,9vw,8rem)] font-extrabold leading-[.88] tracking-[-.075em]">
-        Toque os ritmos<br />que fazem o Brasil<br /><span className="text-violet-300 text-glow-pink">dançar.</span>
+        Toque os ritmos<br />que fazem parte do<br /><span className="text-violet-300 text-glow-pink">seu dia a dia.</span>
       </motion.h1>
       <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .3 }} className="mt-8 max-w-2xl text-base leading-7 text-white/75 md:text-xl md:leading-8">
         Aprenda forró, piseiro, arrocha e corinho de fogo na guitarra, com explicações detalhadas e atuais — junto de quem ensina música há mais de uma década.
