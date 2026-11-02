@@ -133,7 +133,7 @@ export default function Testimonials() {
         transition={{ duration: reducedMotion ? 0 : 0.8 }}
         className="relative mx-auto mb-12 max-w-7xl px-6 lg:mb-16 lg:px-10"
       >
-        <span className="eyebrow">Ato IV — Quem vive o som</span>
+        <span className="eyebrow">O que a música aproxima</span>
         <div className="mt-5 flex flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
           <h2
             id="testimonials-title"
@@ -167,14 +167,14 @@ export default function Testimonials() {
 
       <div className="relative mx-auto mt-12 max-w-3xl px-6 text-center md:mt-16">
         <p className="font-display text-xl font-semibold tracking-[-.035em] text-white/90 md:text-2xl">
-          A próxima história com a guitarra pode ser a sua.
+          Sua caminhada também pode continuar aqui.
         </p>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/55 md:text-base">
           Transforme a inspiração em prática. Na Comunidade dos Ritmos, estude as levadas,
           os timbres e as variações para construir o seu próprio som.
         </p>
         <a href="#curso" className="testimonial-course-link">
-          Conheça A Comunidade dos Ritmos <ArrowUpRight size={17} aria-hidden="true" />
+          Conheça a Comunidade dos Ritmos <ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </div>
     </section>
