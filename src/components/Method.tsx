@@ -9,7 +9,7 @@ const rhythms = [
 ];
 
 const Method = () => <section id="ritmos" className="method-cinema relative overflow-hidden py-24 lg:py-36">
-  <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_20%,rgba(124,58,237,.2),transparent_48%),#08060c]" />
+  <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "linear-gradient(90deg, rgba(8,6,12,.96) 0%, rgba(8,6,12,.88) 55%, rgba(8,6,12,.72) 100%), linear-gradient(0deg, rgba(8,6,12,.92), rgba(8,6,12,.45)), url('/assets/foto2.webp')", backgroundPosition: "center", backgroundSize: "cover" }} aria-hidden="true" />
   <div className="mx-auto max-w-7xl px-6 lg:px-10">
     <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .7 }} className="max-w-4xl">
       <span className="eyebrow">Quatro ritmos. Uma comunidade.</span>
