@@ -1,99 +1,19 @@
-import { Guitar, Instagram, Youtube, MessageCircle } from 'lucide-react';
-
-/* ═══════════════════════════════════════════
-   🎬 CRÉDITOS — Footer
-   Links, redes sociais e informações finais.
-   ═══════════════════════════════════════════ */
-
-const socialLinks = [
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Youtube, label: 'YouTube', href: '#' },
-  { icon: MessageCircle, label: 'WhatsApp', href: '#' },
-];
+import { Guitar, Instagram, Youtube, ArrowUpRight } from 'lucide-react';
 
 const footerLinks = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Método', href: '#metodo' },
-  { label: 'Curso', href: '#curso' },
-  { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'Minha história', href: '#historia' },
+  { label: 'Os ritmos', href: '#ritmos' },
+  { label: 'O que você recebe', href: '#curso' },
+  { label: 'A comunidade', href: '#comunidade' },
+  { label: 'Oferta', href: '#oferta' },
 ];
 
-const Footer = () => {
-  return (
-    <footer className="relative border-t border-white/[0.05] py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
-          {/* Coluna 1: Marca */}
-          <div>
-            <a href="#inicio" className="flex items-center gap-2 mb-4 group">
-              <Guitar className="w-5 h-5 text-brand-pink group-hover:text-brand-purple-light transition-colors" />
-              <span className="font-display font-semibold text-lg tracking-tight">
-                Cayque<span className="text-brand-pink">.</span>Gomes
-              </span>
-            </a>
-            <p className="text-sm text-brand-gray leading-relaxed max-w-xs">
-              A Comunidade dos Ritmos, por Cayque Gomes. Guitarra do piseiro e do arrocha,
-              com a prática real de quem vive a música.
-            </p>
-          </div>
-
-          {/* Coluna 2: Links */}
-          <div>
-            <h4 className="font-display font-medium text-sm text-brand-white mb-4 uppercase tracking-wider">
-              Navegação
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-brand-gray hover:text-brand-pink transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Coluna 3: Redes */}
-          <div>
-            <h4 className="font-display font-medium text-sm text-brand-white mb-4 uppercase tracking-wider">
-              Redes
-            </h4>
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center hover:border-brand-pink/30 hover:bg-brand-pink/5 transition-all duration-300 group"
-                >
-                  <social.icon size={16} className="text-brand-gray group-hover:text-brand-pink transition-colors" />
-                </a>
-              ))}
-            </div>
-            <p className="mt-6 text-sm text-brand-gray">
-              Conteúdos, bastidores e novidades.
-            </p>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="mt-16 pt-8 border-t border-white/[0.05]">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-brand-gray/50">
-              © {new Date().getFullYear()} Cayque Gomes. Todos os direitos reservados.
-            </p>
-            <p className="text-xs text-brand-gray/30 font-mono">
-              Feito com 🎸 e muito piseiro
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
+const Footer = () => <footer className="relative border-t border-violet-300/10 py-14 lg:py-18">
+  <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3 lg:px-10">
+    <div><a href="#inicio" className="mb-4 flex items-center gap-2"><Guitar className="h-5 w-5 text-violet-300"/><span className="font-display text-lg font-semibold">Comunidade<span className="text-violet-300">.</span>dos Ritmos</span></a><p className="max-w-sm text-sm leading-6 text-white/50">Com Cayque Gomes. Forró, piseiro, arrocha e corinho de fogo para guitarristas que querem compreender os detalhes e tocar com mais intenção.</p></div>
+    <div><h4 className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-violet-300">Explore</h4><ul className="space-y-3">{footerLinks.map(link => <li key={link.href}><a href={link.href} className="text-sm text-white/55 transition hover:text-white">{link.label}</a></li>)}</ul></div>
+    <div><h4 className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-violet-300">Acompanhe a jornada</h4><p className="text-sm leading-6 text-white/50">Os links oficiais das redes sociais serão adicionados assim que forem enviados.</p><div className="mt-4 flex gap-3"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40"><Instagram size={17}/></span><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40"><Youtube size={17}/></span></div><a href="#oferta" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-white">Conheça a oferta <ArrowUpRight size={15}/></a></div>
+  </div>
+  <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 px-6 pt-6 lg:px-10"><p className="text-xs text-white/35">© {new Date().getFullYear()} Cayque Gomes. Todos os direitos reservados.</p></div>
+</footer>;
 export default Footer;
