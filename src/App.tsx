@@ -34,6 +34,7 @@ function App() {
     const compactScreen = window.matchMedia('(max-width: 700px)');
     const rootDocumentTop = root.getBoundingClientRect().top + window.scrollY;
     let frame = 0;
+    let motionStylesActive = !reducedMotion.matches && !compactScreen.matches;
 
     sections.forEach((section, index) => {
       section.classList.add('cinematic-scene');
@@ -52,10 +53,13 @@ function App() {
     const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
     const updateScenes = () => {
-      if (reducedMotion.matches || compactScreen.matches) {
-        clearSceneStyles();
+      const shouldAnimate = !reducedMotion.matches && !compactScreen.matches;
+      if (!shouldAnimate) {
+        if (motionStylesActive) clearSceneStyles();
+        motionStylesActive = false;
         return;
       }
+      motionStylesActive = true;
 
       const viewportHeight = window.innerHeight || 1;
       const scrollTop = window.scrollY;
