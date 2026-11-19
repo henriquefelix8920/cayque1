@@ -2,7 +2,7 @@ import { m as motion } from 'framer-motion';
 import { ArrowRight, Guitar, Check } from 'lucide-react';
 
 const CHECKOUT_URL = 'https://pay.kiwify.com.br/lHVGCd0?afid=xpY24zrW';
-const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Olá, Cayque! Vim pela Comunidade dos Ritmos e gostaria de tirar uma dúvida.');
+const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Oi, Cayque! Eu vim aqui a partir do seu site. Quero me tornar aluno da Comunidade dos Ritmos!');
 
 const CTA = () => <section id="oferta" className="relative overflow-hidden py-24 lg:py-36">
   <div className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "linear-gradient(180deg, rgba(8,6,12,.88) 0%, rgba(8,6,12,.94) 58%, rgba(8,6,12,.98) 100%), linear-gradient(90deg, rgba(8,6,12,.75), rgba(16,9,26,.72)), url('/assets/foto3.webp')", backgroundPosition: "center 38%", backgroundSize: "cover" }} aria-hidden="true"/>
