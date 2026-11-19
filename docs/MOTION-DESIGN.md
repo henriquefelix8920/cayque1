@@ -39,7 +39,7 @@ Após o hero, as seções alternam:
 - Telas de até 700 px: painéis permanecem estáticos para preservar o fluxo vertical; os reveals de conteúdo continuam leves.
 - prefers-reduced-motion: reduce: controlador de profundidade e reveals são desativados, e todo o conteúdo permanece visível.
 - Caso IntersectionObserver não esteja disponível, os reveals não são aplicados e o conteúdo permanece visível.
-- Não há pinning ou scroll-jacking.
+- Não há pinning: a página foi mantida como uma leitura contínua de oferta; uma cena presa à viewport alongaria artificialmente a navegação. O movimento narrativo é feito pelo parallax do hero e pelas transições A/B reversíveis entre painéis, sem scroll-jacking.
 
 ## Validação
 
