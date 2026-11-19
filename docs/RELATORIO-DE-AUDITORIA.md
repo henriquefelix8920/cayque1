@@ -24,6 +24,19 @@ A versão anterior estava publicada e respondia normalmente, mas havia pontos de
 
 Os tamanhos vieram do log Vercel; não representam medição de velocidade percebida nem substituem Lighthouse ou dados de usuários.
 
+### Build após as correções — commit fcce0df
+
+| Item | Antes | Depois |
+|---|---:|---:|
+| Build Vite | 3,55 s | 2,78 s |
+| HTML | 1,07 kB / 0,58 kB gzip | 2,12 kB / 0,76 kB gzip |
+| CSS | 79,59 kB / 14,86 kB gzip | 66,81 kB / 13,20 kB gzip |
+| JavaScript | 318,29 kB / 101,02 kB gzip | 318,21 kB / 101,01 kB gzip |
+
+O tempo de build caiu cerca de 22% e o CSS compilado ficou aproximadamente 16% menor. Isso compara o processo de build, não prova que o carregamento percebido ficou 22% mais rápido. O JavaScript permaneceu praticamente igual; as principais correções de fluidez foram no cálculo do scroll e no carregamento do vídeo.
+
+O novo deployment foi concluído pela Vercel em estado `READY`. O log ainda mostrou avisos npm sobre a configuração `cache-dir` e o script de instalação de `esbuild`; não impediram a compilação. `npm run typecheck` não foi executado pelo pipeline.
+
 ### Assets relevantes
 
 - Vídeo desktop do hero: aproximadamente 2,00 MB.
