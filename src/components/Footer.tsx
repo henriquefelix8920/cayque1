@@ -1,4 +1,7 @@
-import { Guitar, Instagram, Youtube, ArrowUpRight } from 'lucide-react';
+import { Guitar, Instagram, MessageCircle, ArrowUpRight } from 'lucide-react';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/cayquegomess/';
+const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Olá, Cayque! Vim pela Comunidade dos Ritmos e gostaria de saber mais.');
 
 const footerLinks = [
   { label: 'Minha história', href: '#historia' },
@@ -12,7 +15,7 @@ const Footer = () => <footer className="relative border-t border-violet-300/10 p
   <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3 lg:px-10">
     <div><a href="#inicio" className="mb-4 flex items-center gap-2"><Guitar className="h-5 w-5 text-violet-300"/><span className="font-display text-lg font-semibold">Comunidade<span className="text-violet-300">.</span>dos Ritmos</span></a><p className="max-w-sm text-sm leading-6 text-white/50">Com Cayque Gomes. Forró, piseiro, arrocha e corinho de fogo para guitarristas que querem compreender os detalhes e tocar com mais intenção.</p></div>
     <div><h4 className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-violet-300">Explore</h4><ul className="space-y-3">{footerLinks.map(link => <li key={link.href}><a href={link.href} className="text-sm text-white/55 transition hover:text-white">{link.label}</a></li>)}</ul></div>
-    <div><h4 className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-violet-300">Acompanhe a jornada</h4><p className="text-sm leading-6 text-white/50">Os links oficiais das redes sociais serão adicionados assim que forem enviados.</p><div className="mt-4 flex gap-3"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40"><Instagram size={17}/></span><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40"><Youtube size={17}/></span></div><a href="#oferta" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-white">Conheça a oferta <ArrowUpRight size={15}/></a></div>
+    <div><h4 className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-violet-300">Acompanhe a jornada</h4><p className="text-sm leading-6 text-white/50">Veja os conteúdos de Cayque e fale diretamente com ele.</p><div className="mt-4 flex gap-3"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram de Cayque Gomes" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/70 transition hover:border-violet-300/50 hover:text-violet-200"><Instagram size={17}/></a><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Conversar com Cayque pelo WhatsApp" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/70 transition hover:border-violet-300/50 hover:text-violet-200"><MessageCircle size={17}/></a></div><a href="#oferta" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-white">Conheça a oferta <ArrowUpRight size={15}/></a></div>
   </div>
   <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 px-6 pt-6 lg:px-10"><p className="text-xs text-white/35">© {new Date().getFullYear()} Cayque Gomes. Todos os direitos reservados.</p></div>
 </footer>;
