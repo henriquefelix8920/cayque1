@@ -277,3 +277,47 @@
   .testimonial-ribbon-sequence[aria-hidden='true'] { display: none; }
   .testimonial-course-link, .testimonial-course-link svg { transition: none; }
 }
+
+
+/* Motion de leitura: reveals leves e profundidade aplicada ao painel inteiro. */
+.cinematic-scene {
+  position: relative;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.scroll-reveal-target {
+  opacity: 0;
+  translate: 0 18px;
+  scale: .985;
+  transition:
+    opacity .72s cubic-bezier(.2,.7,.2,1),
+    translate .72s cubic-bezier(.2,.7,.2,1),
+    scale .72s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.scroll-reveal-target.is-revealed {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+@media (max-width: 700px) {
+  .scroll-reveal-target {
+    translate: 0 12px;
+    transition-duration: .5s;
+    transition-delay: 0ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-scene {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .scroll-reveal-target,
+  .scroll-reveal-target.is-revealed {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+}
