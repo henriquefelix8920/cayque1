@@ -1,7 +1,7 @@
 import { Guitar, Instagram, MessageCircle, ArrowUpRight } from 'lucide-react';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/cayquegomess/';
-const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Olá, Cayque! Vim pela Comunidade dos Ritmos e gostaria de saber mais.');
+const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Oi, Cayque! Eu vim aqui a partir do seu site. Quero me tornar aluno da Comunidade dos Ritmos!');
 
 const footerLinks = [
   { label: 'Minha história', href: '#historia' },

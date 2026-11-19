@@ -1,6 +1,6 @@
 import { MessageCircle } from 'lucide-react';
 
-const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Olá, Cayque! Vim pela Comunidade dos Ritmos e gostaria de conversar.');
+const WHATSAPP_URL = 'https://wa.me/5522981875611?text=' + encodeURIComponent('Oi, Cayque! Eu vim aqui a partir do seu site. Quero me tornar aluno da Comunidade dos Ritmos!');
 
 export default function FloatingCourseButton() {
   return <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="floating-course-button" aria-label="Conversar com Cayque no WhatsApp">
