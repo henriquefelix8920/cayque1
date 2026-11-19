@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { MessageCircle, Users, Video, HeartHandshake } from 'lucide-react';
 
 const SocialPlatforms = () => <section id="comunidade" className="social-platforms relative overflow-hidden py-24 md:py-32">
