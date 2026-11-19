@@ -321,3 +321,214 @@
     transition: none !important;
   }
 }
+
+
+/* Seção dedicada aos perfis oficiais do criador. */
+.creator-socials {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(109,40,217,.13), transparent 48%),
+    linear-gradient(180deg, #08060c 0%, #10091a 50%, #08060c 100%);
+}
+.creator-socials::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8%;
+  z-index: -1;
+  border: 1px solid rgba(196,181,253,.07);
+  border-radius: 50%;
+  transform: scaleY(.42) rotate(-8deg);
+  pointer-events: none;
+}
+.creator-socials-glow {
+  position: absolute;
+  z-index: -1;
+  width: clamp(14rem, 27vw, 24rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: .18;
+  pointer-events: none;
+}
+.creator-socials-glow-one {
+  top: 18%;
+  left: -8rem;
+  background: #8b5cf6;
+}
+.creator-socials-glow-two {
+  right: -8rem;
+  bottom: 8%;
+  background: #a78bfa;
+}
+.creator-social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 1.8rem);
+  perspective: 1200px;
+}
+.creator-social-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 25rem;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 1.25rem;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.018) 68%, rgba(8,6,12,.4));
+  box-shadow: 0 24px 64px rgba(0,0,0,.25), inset 0 1px rgba(255,255,255,.12);
+  transform-style: preserve-3d;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.creator-social-card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(130deg, rgba(255,255,255,.1), transparent 38%, transparent 72%, rgba(255,255,255,.04));
+  pointer-events: none;
+}
+.creator-social-card:hover,
+.creator-social-card:focus-visible {
+  transform: translateY(-8px) rotateX(2deg);
+  border-color: rgba(196,181,253,.55);
+  box-shadow: 0 34px 84px rgba(0,0,0,.36), 0 0 34px rgba(139,92,246,.14), inset 0 1px rgba(255,255,255,.18);
+}
+.creator-social-icon-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 6.5rem;
+  height: 6.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 1.5rem;
+  color: white;
+  background: rgba(8,6,12,.54);
+  box-shadow: 0 18px 40px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.16);
+  transform: translateZ(44px) rotate(-5deg);
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.creator-social-card:hover .creator-social-icon-wrap,
+.creator-social-card:focus-visible .creator-social-icon-wrap {
+  transform: translateZ(58px) rotate(0) scale(1.07);
+}
+.creator-social-icon {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.creator-social-card-instagram .creator-social-icon-wrap {
+  background: linear-gradient(145deg, #8b5cf6 0%, #d946a8 52%, #f59e0b 100%);
+  border-color: rgba(255,255,255,.28);
+}
+.creator-social-card-youtube .creator-social-icon-wrap {
+  color: #ff263d;
+  background: linear-gradient(145deg, rgba(255,38,61,.18), rgba(8,6,12,.88));
+}
+.creator-social-card-tiktok .creator-social-icon-wrap {
+  color: white;
+  background: linear-gradient(145deg, rgba(37,244,238,.13), rgba(254,44,85,.15) 55%, rgba(8,6,12,.88));
+}
+.creator-social-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  transform: translateZ(24px);
+}
+.creator-social-label {
+  color: rgba(255,255,255,.48);
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.creator-social-copy strong {
+  margin-top: .45rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+  letter-spacing: -.06em;
+}
+.creator-social-handle {
+  margin-top: .4rem;
+  color: var(--color-brand-pink-light);
+  font-family: var(--font-mono);
+  font-size: .8rem;
+}
+.creator-social-description {
+  max-width: 19rem;
+  margin-top: .85rem;
+  color: rgba(255,255,255,.58);
+  font-size: .87rem;
+  line-height: 1.6;
+}
+.creator-social-action {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1.25rem;
+  border-bottom: 1px solid rgba(196,181,253,.5);
+  padding-bottom: .35rem;
+  color: var(--color-brand-pink-light);
+  font-family: var(--font-display);
+  font-size: .8rem;
+  font-weight: 700;
+  transition: color .25s ease, gap .25s ease;
+}
+.creator-social-card:hover .creator-social-action,
+.creator-social-card:focus-visible .creator-social-action {
+  gap: .85rem;
+  color: white;
+}
+.creator-social-card-glow {
+  position: absolute;
+  z-index: 0;
+  right: -4rem;
+  bottom: -6rem;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: .22;
+  background: #8b5cf6;
+  transition: transform .7s ease, opacity .7s ease;
+  pointer-events: none;
+}
+.creator-social-card-instagram .creator-social-card-glow { background: #d946a8; }
+.creator-social-card-youtube .creator-social-card-glow { background: #ff263d; }
+.creator-social-card-tiktok .creator-social-card-glow { background: #25f4ee; }
+.creator-social-card:hover .creator-social-card-glow,
+.creator-social-card:focus-visible .creator-social-card-glow {
+  transform: scale(1.4);
+  opacity: .36;
+}
+@media (max-width: 900px) {
+  .creator-social-grid { grid-template-columns: 1fr; max-width: 38rem; margin-inline: auto; }
+  .creator-social-card { min-height: 19rem; flex-direction: row; justify-content: flex-start; text-align: left; }
+  .creator-social-copy { align-items: flex-start; }
+  .creator-social-description { max-width: 24rem; }
+}
+@media (max-width: 560px) {
+  .creator-social-card { min-height: 0; gap: 1.1rem; padding: 1.15rem; }
+  .creator-social-icon-wrap { width: 4.5rem; height: 4.5rem; border-radius: 1rem; }
+  .creator-social-icon { width: 2.4rem; height: 2.4rem; }
+  .creator-social-copy strong { font-size: 1.55rem; }
+  .creator-social-description { margin-top: .5rem; font-size: .76rem; }
+  .creator-social-action { margin-top: .8rem; font-size: .72rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .creator-social-card,
+  .creator-social-icon-wrap,
+  .creator-social-action,
+  .creator-social-card-glow { transition: none; }
+}
