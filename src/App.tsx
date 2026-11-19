@@ -140,7 +140,7 @@ function App() {
     if (!root) return;
 
     const targets = Array.from(root.querySelectorAll<HTMLElement>(
-      'section:not(#inicio) h2, section:not(#inicio) h3, section:not(#inicio) .eyebrow, section:not(#inicio) p, section:not(#inicio) article svg, section:not(#inicio) li svg'
+      'section:not(#inicio) h2, section:not(#inicio) h3, section:not(#inicio) .eyebrow, section:not(#inicio) p, section:not(#inicio) svg'
     ));
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
