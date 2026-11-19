@@ -83,6 +83,7 @@ Não foi possível abrir a página em navegador com viewports reais de 360×800,
 - `robots.txt` e `sitemap.xml` adicionados.
 - A referência de script de preview que retornava 404 foi removida.
 - O endereço canônico foi deixado pendente até a definição do domínio próprio. `og:url` e sitemap usam `https://cayque1.vercel.app/` como endereço provisório e devem ser atualizados na etapa do domínio.
+- A aplicação é uma SPA React: o HTML inicial tem um `#root` vazio e o conteúdo principal aparece depois da execução do JavaScript. Crawlers que não executam ou não aguardam JavaScript podem não ler toda a copy. Para SEO orgânico mais competitivo, considerar pré-renderização/SSR; não é impeditivo para ligar o domínio, mas limita a garantia de indexação fora de crawlers compatíveis com JS.
 
 ## Acessibilidade e experiência
 
