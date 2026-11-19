@@ -22,14 +22,6 @@ function App() {
     restDelta: 0.001
   });
 
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
-
   // Transições 2.5D entre os painéis: progresso contínuo e reversível pelo scroll.
   useEffect(() => {
     const root = document.querySelector<HTMLElement>('#root > div');
@@ -40,6 +32,7 @@ function App() {
     );
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const compactScreen = window.matchMedia('(max-width: 700px)');
+    const rootDocumentTop = root.getBoundingClientRect().top + window.scrollY;
     let frame = 0;
 
     sections.forEach((section, index) => {
@@ -65,12 +58,17 @@ function App() {
       }
 
       const viewportHeight = window.innerHeight || 1;
+      const scrollTop = window.scrollY;
       const intensity = window.innerWidth <= 1024 ? 0.68 : 1;
 
       sections.forEach((section, index) => {
         if (index === 0) return; // O hero já possui sua própria sequência de movimento.
-        const rect = section.getBoundingClientRect();
-        if (rect.bottom < -viewportHeight * 0.2 || rect.top > viewportHeight * 1.2) {
+
+        // Mede a posição de layout, não o retângulo já transformado no frame anterior.
+        const sectionTop = rootDocumentTop + section.offsetTop - scrollTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        if (sectionBottom < -viewportHeight * 0.2 || sectionTop > viewportHeight * 1.2) {
           section.style.removeProperty('transform');
           section.style.removeProperty('opacity');
           section.style.removeProperty('z-index');
@@ -78,7 +76,7 @@ function App() {
           return;
         }
 
-        const centerDelta = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
+        const centerDelta = (sectionTop + sectionHeight / 2 - viewportHeight / 2) / viewportHeight;
         const distance = Math.min(Math.abs(centerDelta) / 0.9, 1);
         const focus = 1 - distance;
         const isDepth = section.dataset.motionDirection === 'depth';

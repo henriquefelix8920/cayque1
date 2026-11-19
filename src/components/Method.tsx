@@ -23,7 +23,7 @@ const Method = () => <section id="ritmos" className="method-cinema relative over
         <p className="mt-4 max-w-md text-sm leading-6 text-white/60 md:text-base">{rhythm.line}</p>
       </motion.article>; })}
     </div>
-    <p className="mt-8 max-w-2xl text-sm leading-6 text-white/45">E a conversa não precisa parar nesses quatro: a comunidade também abre espaço para outros estilos e para as dúvidas que aparecem na prática.</p>
+    <p className="mt-8 max-w-2xl text-sm leading-6 text-white/60">E a conversa não precisa parar nesses quatro: a comunidade também abre espaço para outros estilos e para as dúvidas que aparecem na prática.</p>
   </div>
 </section>;
 export default Method;

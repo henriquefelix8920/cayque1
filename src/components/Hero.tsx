@@ -9,6 +9,7 @@ const Hero = () => {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -55]);
   const contentOpacity = useTransform(scrollYProgress, [0, .8], [1, 0]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.07]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -29,9 +30,9 @@ const Hero = () => {
   }, []);
 
   return <section id="inicio" ref={containerRef} className="hero relative flex min-h-[100svh] items-center overflow-hidden">
-    <motion.div style={{ scale: useTransform(scrollYProgress, [0, 1], [1.02, 1.07]) }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <motion.div style={{ scale: backgroundScale }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/assets/foto1.webp')" }} />
-      <video ref={videoRef} className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/assets/foto1.webp" aria-hidden="true">
+      <video ref={videoRef} className="absolute inset-0 h-full w-full object-cover" muted loop playsInline preload="none" poster="/assets/foto1.webp" aria-hidden="true">
         <source media="(max-width: 767px)" src="/assets/video1-mobile.mp4" type="video/mp4" />
         <source src="/assets/video1.mp4" type="video/mp4" />
       </video>
