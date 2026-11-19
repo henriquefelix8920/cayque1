@@ -8,6 +8,7 @@ import Course from './components/Course';
 import Testimonials from './components/Testimonials';
 import SocialPlatforms from './components/SocialPlatforms';
 import Gallery from './components/Gallery';
+import CreatorSocials from './components/CreatorSocials';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import GrainOverlay from './components/GrainOverlay';
@@ -174,6 +175,7 @@ function App() {
       <Testimonials />
       <SocialPlatforms />
       <Gallery />
+      <CreatorSocials />
       <CTA />
       <Footer />
       <FloatingCourseButton />
