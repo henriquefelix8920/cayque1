@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Check, Users, Video, MessageCircle, RefreshCw, Guitar, ArrowRight } from 'lucide-react';
 
 const items = [
