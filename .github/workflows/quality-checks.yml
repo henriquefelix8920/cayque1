@@ -50,7 +50,7 @@ jobs:
 
       - name: Start production preview
         run: |
-          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort > /tmp/vite-preview.log 2>&1 &
+          npx vite preview --host 127.0.0.1 --port 4173 --strictPort > /tmp/vite-preview.log 2>&1 &
           for i in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
               echo "Production preview is ready."
