@@ -6,6 +6,6 @@ export default function FloatingCourseButton() {
   return <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="floating-course-button" aria-label="Conversar com Cayque no WhatsApp">
     <span className="floating-course-button-ring" aria-hidden="true"/>
     <span className="floating-course-button-shine" aria-hidden="true"/>
-    <span className="floating-course-button-core"><MessageCircle size={22} aria-hidden="true"/><span>Falar no WhatsApp</span></span>
+    <span className="floating-course-button-core"><MessageCircle size={30} className="floating-whatsapp-logo" aria-hidden="true"/></span>
   </a>;
 }
