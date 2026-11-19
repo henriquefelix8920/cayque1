@@ -1,0 +1,111 @@
+name: Typecheck and Lighthouse
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "vite.config.js"
+      - ".github/workflows/quality-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Typecheck, build and Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Set up Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Start production preview
+        run: |
+          npx vite preview --host 127.0.0.1 --port 4173 --strictPort > /tmp/vite-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              echo "Production preview is ready."
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/vite-preview.log
+          echo "Production preview did not start in time."
+          exit 1
+
+      - name: Run Lighthouse audit
+        run: |
+          npx --yes lighthouse@12.8.2 http://127.0.0.1:4173/ \
+            --chrome-path="${{ steps.chrome.outputs.chrome-path }}" \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --output=html --output=json \
+            --output-path=./lighthouse-report \
+            --quiet
+
+      - name: Add Lighthouse scores to the job summary
+        if: always()
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const reportPath = "./lighthouse-report.report.json";
+          const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+
+          if (!fs.existsSync(reportPath)) {
+            fs.appendFileSync(summaryPath, "## Lighthouse\n\nO relatório não foi gerado. Consulte os passos anteriores para ver o motivo.\n");
+            process.exit(0);
+          }
+
+          const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+          const categories = ["performance", "accessibility", "best-practices", "seo"];
+          const rows = categories.map((key) => {
+            const category = report.categories[key];
+            const score = category.score === null ? "—" : `${Math.round(category.score * 100)}/100`;
+            return `| ${category.title} | ${score} |`;
+          });
+
+          fs.appendFileSync(
+            summaryPath,
+            ["## Lighthouse", "", "| Categoria | Pontuação |", "|---|---:|", ...rows, "", "Relatório HTML e JSON disponíveis nos artefatos desta execução.", ""].join("\n")
+          );
+          NODE
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            lighthouse-report.report.html
+            lighthouse-report.report.json
+          if-no-files-found: ignore
+          retention-days: 14

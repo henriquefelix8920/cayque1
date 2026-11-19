@@ -2,7 +2,7 @@
 
 @theme {
   --color-brand-black: #08060c; --color-brand-dark: #120c1c; --color-brand-purple-deep: #1b1033; --color-brand-purple: #6d28d9; --color-brand-purple-light: #c4b5fd; --color-brand-pink: #a78bfa; --color-brand-pink-light: #ddd6fe; --color-brand-gold: #f4b942; --color-brand-white: #faf9fb; --color-brand-gray: #b5afbd;
-  --font-display: 'Sora', sans-serif; --font-body: 'DM Sans', sans-serif; --font-mono: 'IBM Plex Mono', monospace;
+  --font-display: 'Sora', sans-serif; --font-body: 'DM Sans', sans-serif; --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 :root { color-scheme: dark; } html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; } body { margin: 0; overflow-x: hidden; background: var(--color-brand-black); color: var(--color-brand-white); font-family: var(--font-body); } section { scroll-margin-top: 5rem; } ::selection { background: rgba(139,92,246,.35); color: white; } :focus-visible { outline: 2px solid var(--color-brand-pink); outline-offset: 4px; } ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--color-brand-black); } ::-webkit-scrollbar-thumb { border-radius: 99px; background: #39245b; } ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-pink); }
 .grain-overlay { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .022; background-image: radial-gradient(rgba(255,255,255,.3) .55px, transparent .7px); background-size: 5px 5px; }

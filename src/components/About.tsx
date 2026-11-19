@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Guitar, Heart, Music2 } from 'lucide-react';
 
 const About = () => <section id="historia" className="about-cinema relative isolate overflow-hidden py-24 lg:py-36">

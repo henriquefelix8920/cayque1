@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { ArrowRight, Guitar, Check } from 'lucide-react';
 
 const CHECKOUT_URL = 'https://pay.kiwify.com.br/lHVGCd0?afid=xpY24zrW';

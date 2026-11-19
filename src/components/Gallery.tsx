@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 const photos = [
-  { src: '/assets/gallery/gallery-02.avif', alt: 'Cayque Gomes em um momento de performance, retrato 2' },
-  { src: '/assets/gallery/gallery-03.avif', alt: 'Cayque Gomes em close, retrato 3' },
-  { src: '/assets/gallery/gallery-04.avif', alt: 'Cayque Gomes nos bastidores, retrato 4' },
-  { src: '/assets/gallery/gallery-05.avif', alt: 'Cayque Gomes em apresentação, retrato 5' },
-  { src: '/assets/gallery/gallery-06.avif', alt: 'Cayque Gomes em ensaio, retrato 6' },
-  { src: '/assets/gallery/gallery-07.avif', alt: 'Cayque Gomes em cena horizontal, retrato 7' },
-  { src: '/assets/gallery/gallery-08.avif', alt: 'Cayque Gomes sorrindo, retrato 8' },
-  { src: '/assets/gallery/gallery-09.avif', alt: 'Cayque Gomes em retrato vertical, retrato 9' },
+  { src: '/assets/gallery/gallery-02-thumb.avif', alt: 'Cayque Gomes em um momento de performance, retrato 2' },
+  { src: '/assets/gallery/gallery-03-thumb.avif', alt: 'Cayque Gomes em close, retrato 3' },
+  { src: '/assets/gallery/gallery-04-thumb.avif', alt: 'Cayque Gomes nos bastidores, retrato 4' },
+  { src: '/assets/gallery/gallery-05-thumb.avif', alt: 'Cayque Gomes em apresentação, retrato 5' },
+  { src: '/assets/gallery/gallery-06-thumb.avif', alt: 'Cayque Gomes em ensaio, retrato 6' },
+  { src: '/assets/gallery/gallery-07-thumb.avif', alt: 'Cayque Gomes em cena horizontal, retrato 7' },
+  { src: '/assets/gallery/gallery-08-thumb.avif', alt: 'Cayque Gomes sorrindo, retrato 8' },
+  { src: '/assets/gallery/gallery-09-thumb.avif', alt: 'Cayque Gomes em retrato vertical, retrato 9' },
 ];
 
 const wrapIndex = (index: number) => (index + photos.length) % photos.length;

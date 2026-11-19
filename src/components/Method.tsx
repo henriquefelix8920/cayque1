@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Music2, Guitar, AudioLines, Flame } from 'lucide-react';
 
 const rhythms = [
